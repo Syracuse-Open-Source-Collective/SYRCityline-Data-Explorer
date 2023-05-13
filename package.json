@@ -1,0 +1,30 @@
+{
+  "name": "syracuse-data-challenge-may-discord-bot",
+  "version": "1.0.0",
+  "description": "A bot for discord to compete in the syracuse open data challenge for May 2023.",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josephistired/Syracuse-Data-Challenge-May-Discord-Bot.git"
+  },
+  "keywords": [
+    "bot",
+    "discord"
+  ],
+  "author": "josephistired",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/josephistired/Syracuse-Data-Challenge-May-Discord-Bot/issues"
+  },
+  "homepage": "https://github.com/josephistired/Syracuse-Data-Challenge-May-Discord-Bot#readme",
+  "dependencies": {
+    "discord.js": "^14.11.0",
+    "dotenv": "^16.0.3",
+    "glob": "^10.2.2",
+    "nodemon": "^2.0.22",
+    "superagent": "^8.0.9"
+  }
+}
