@@ -14,6 +14,6 @@ module.exports = {
    * @param {ChatInputCommandInteraction} interaction
    */
   async execute(interaction) {
-    interaction.reply({content: "The bot is working! (:", ephemeral: true});
+    interaction.reply({ content: "The bot is working! (:", ephemeral: true });
   },
 };
