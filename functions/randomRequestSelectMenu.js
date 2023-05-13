@@ -4,7 +4,7 @@ const {
   StringSelectMenuOptionBuilder,
 } = require("discord.js");
 
-async function randomRequestSelectMenu(interaction, choice) {
+function randomRequestSelectMenu(interaction, choice) {
   return new ActionRowBuilder().addComponents(
     new StringSelectMenuBuilder()
       .setCustomId("starter")

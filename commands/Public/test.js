@@ -5,7 +5,7 @@ const {
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("ping")
+    .setName("test")
     .setDescription(
       "Checks if the bot is currently working if it doesn't reply it's not!"
     )
@@ -13,7 +13,7 @@ module.exports = {
   /**
    * @param {ChatInputCommandInteraction} interaction
    */
-  async execute(interaction) {
-    interaction.reply({content: "The bot is working! (:", ephemeral: true});
+  execute(interaction) {
+    interaction.reply({ content: "The bot is working! (:", ephemeral: true });
   },
 };

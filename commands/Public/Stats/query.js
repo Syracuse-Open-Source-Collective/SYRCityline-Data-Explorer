@@ -31,7 +31,7 @@ module.exports = {
         const realcurrentMonth = (wantedMonth + 1).toString().padStart(2, "0");
 
         let count = 0;
-        let categoryCounts = {};
+        const categoryCounts = {};
 
         allRecords.forEach((feature) => {
           const createdAt = feature.attributes.Created_at_local;

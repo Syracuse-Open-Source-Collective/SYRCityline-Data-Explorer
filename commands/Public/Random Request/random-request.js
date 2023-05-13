@@ -28,7 +28,7 @@ module.exports = {
           "I am currently retrieving the necessary data from the API. Please bear with me for a moment!",
       });
 
-      let { body } = await superagent.get(
+      const { body } = await superagent.get(
         `https://services6.arcgis.com/bdPqSfflsdgFRVVM/arcgis/rest/services/SeeClickFix_Requests_2021_Present_AutoUpdate_Test/FeatureServer/0/query?where=Category%20%3D%20%27${choice}%27&outFields=Id,Summary,Rating,Address,Description,Agency_Name,Request_type,URL,Lat,Lng,Created_at_local,Closed_at_local,Assignee_name,Category,Report_Source,Acknowledged_at_local,Minutes_to_acknowledged,Minutes_to_closed&outSR=4326&f=json`
       );
 

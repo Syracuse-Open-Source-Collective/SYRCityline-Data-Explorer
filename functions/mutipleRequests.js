@@ -5,7 +5,6 @@ const {
   ButtonStyle,
   ComponentType,
   EmbedBuilder,
-  bold,
 } = require("discord.js");
 
 async function mutipleRequests(interaction, requests) {

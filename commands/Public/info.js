@@ -17,7 +17,7 @@ module.exports = {
    * @param {ChatInputCommandInteraction} interaction
    */
 
-  async execute(interaction, client) {
+  execute(interaction, client) {
     try {
       const attachment = new AttachmentBuilder("assets/logo.png");
 

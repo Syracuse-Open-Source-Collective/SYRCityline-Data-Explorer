@@ -10,7 +10,7 @@ module.exports = {
    *
    * @param {ChatInputCommandInteraction} interaction
    */
-  async execute(interaction, client) {
+  execute(interaction, client) {
     if (!interaction.isChatInputCommand()) return;
 
     const command = client.commands.get(interaction.commandName);

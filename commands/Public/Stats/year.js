@@ -19,7 +19,7 @@ module.exports = {
           "I am currently retrieving the necessary data from the API. Please bear with me for a moment!",
       });
 
-      let categoryCounts = {};
+      const categoryCounts = {};
 
       fetchAllRecords().then((allRecords) => {
         const currentDate = new Date();
