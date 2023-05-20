@@ -8,9 +8,6 @@ const {
   ComponentType,
 } = require("discord.js");
 const superagent = require("superagent");
-const {
-  randomRequestSelectMenu,
-} = require("../../../functions/randomRequestSelectMenu");
 
 module.exports = {
   subCommand: "request.random",
@@ -49,8 +46,6 @@ module.exports = {
       const randomRequest = Math.floor(Math.random() * numberRequests);
 
       const attachment = new AttachmentBuilder("assets/logo.png");
-
-      const selection = await randomRequestSelectMenu(interaction, choice);
 
       const emojis = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
@@ -154,29 +149,11 @@ module.exports = {
         content: `Showing you a random request in the category of \`${choice}!\``,
         embeds: [createRequestEmbed],
         files: [attachment],
-        components: [selection, emojis],
+        components: [emojis],
       });
 
       const userID = interaction.user.id;
       const command = interaction.commandName;
-
-      const menu = message.createMessageComponentCollector({
-        componentType: ComponentType.StringSelect,
-        time: 1500,
-      });
-
-      menu.on("collect", async (interaction) => {
-        if (!interaction.user.id === message.author.id) {
-          await interaction.reply({
-            content: `You cannot use this button as you did not initiate the command. Run \`/${command}\`!`,
-            ephemeral: true,
-          });
-          return;
-        }
-        if (interaction.customId === "Pavement Markings") {
-          interaction.update({ content: "test" });
-        }
-      });
 
       const collector = message.createMessageComponentCollector({
         componentType: ComponentType.Button,
@@ -294,7 +271,7 @@ module.exports = {
             content: `Showing you a random request in the category of \`${body.features[randomRequest].attributes.Category}\`!`,
             embeds: [newRequestEmbed],
             files: [attachment],
-            components: [selection, emojis],
+            components: [emojis],
           });
         }
 
@@ -302,12 +279,9 @@ module.exports = {
           emojis.components.forEach((component) => {
             component.setDisabled(true);
           });
-          selection.components.forEach((component) => {
-            component.setDisabled(true);
-          });
 
           message.edit({
-            components: [selection, emojis],
+            components: [emojis],
           });
         });
       });

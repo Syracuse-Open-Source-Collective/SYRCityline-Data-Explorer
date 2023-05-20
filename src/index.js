@@ -8,7 +8,7 @@ client.commands = new Collection();
 client.subCommands = new Collection();
 client.cooldowns = new Collection();
 
-const { loadEvents } = require("../Handlers/eventLoader");
+const { loadEvents } = require("../handlers/eventLoader");
 loadEvents(client);
 
 client.login(process.env.token);

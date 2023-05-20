@@ -25,9 +25,9 @@ module.exports = {
         `https://services6.arcgis.com/bdPqSfflsdgFRVVM/arcgis/rest/services/SeeClickFix_Requests_2021_Present_AutoUpdate_Test/FeatureServer/0/query?where=Id%20%3D%20%27${id}%27&outFields=Id,Summary,Rating,Address,Description,Agency_Name,Request_type,URL,Lat,Lng,Created_at_local,Closed_at_local,Assignee_name,Category,Report_Source,Acknowledged_at_local,Minutes_to_acknowledged,Minutes_to_closed&outSR=4326&f=json`
       );
 
-      if (body.features.length === 0) {
+      if (body.features === undefined) {
         return interaction.editReply(
-          "I'm sorry, but I couldn't find any requests associated with that ID. Please try again with a different ID."
+          "I'm sorry, but I couldn't find any requests associated with that ID. Please try again with a different ID. "
         );
       }
 
