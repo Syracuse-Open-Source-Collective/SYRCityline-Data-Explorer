@@ -8,7 +8,7 @@ async function loadEvents(client) {
   try {
     client.events = new Map();
 
-    const files = await loadFiles("Events");
+    const files = await loadFiles("events");
 
     for (const file of files) {
       try {

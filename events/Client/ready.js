@@ -1,5 +1,5 @@
 console.clear();
-const { loadCommands } = require("../../Handlers/commandLoader");
+const { loadCommands } = require("../../handlers/commandLoader");
 
 module.exports = {
   name: "ready",
