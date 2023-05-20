@@ -5,6 +5,8 @@
 
 </p>
 
+[Invite SYRCityline Data Explorer to your discord server!](https://discord.com/api/oauth2/authorize?client_id=1105216861425127534&permissions=8&scope=bot%20applications.commands)
+
 </div>
 
 # 🧠 Introduction
@@ -91,7 +93,7 @@ token=put token here
 
 #  ⚠️ Disclaimer
 
-SYRCityline Data Explorer is an open-source bot developed to foster transparency and collaboration. The bot's source code is available for the community to explore, modify, and enhance according to their needs. You are encouraged to invite the bot to your Discord server and leverage its capabilities to access SYRCityline request data.
+SYRCityline Data Explorer is an open-source bot developed to foster transparency and collaboration. The bot's source code is available for the community to explore, modify, and enhance according to their needs. You are encouraged to [invite](https://discord.com/api/oauth2/authorize?client_id=1105216861425127534&permissions=8&scope=bot%20applications.commands) the bot to your Discord server and leverage its capabilities to access SYRCityline request data.
 
 If you wish to customize the bot, you have the freedom to fork the repository and make it your own. Feel free to modify the code to suit your specific requirements or add new features. However, please note that as the original developer, I won't provide support or accept responsibility for any changes or modifications made to the bot by others.
 
