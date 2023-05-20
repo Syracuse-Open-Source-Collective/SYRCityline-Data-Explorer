@@ -1,7 +1,7 @@
 <div align="center">
 
 # 🤖 SYRCityline Data Explorer 
-![Syracuse Data Challenge (Social Post) (7)](https://github.com/josephistired/Syracuse-Data-Challenge-May-Discord-Bot/assets/65987360/36025a66-991c-461e-9a19-621674977204)
+![Syracuse Data Challenge (Social Post) (7)](https://github.com/josephistired/SYRCityline-Data-Explorer/assets/65987360/659127a0-cc59-4874-b9de-aa3aca14c4dd)
 
 </p>
 
@@ -21,32 +21,32 @@ Join us in revolutionizing the way residents interact with the city they call ho
 
 ***/random request***: Fetches a random request from the SYRCityline Requests dataset. This command provides a glimpse into the diverse range of service requests made through SYRCityline, allowing users to explore different types of reported issues within the city.
 
-![image](https://github.com/josephistired/SYRCityline-Data-Explorer/assets/65987360/efa61fc1-b40c-4cee-b859-8596c0ee315e)
+![image](https://github.com/josephistired/SYRCityline-Data-Explorer/assets/65987360/0d3c5d6a-6e11-45c8-a006-b083238840b9)
 
 
 ***/search address***: Retrieves all requests associated with a specific address. By providing an address as input, users can obtain a comprehensive list of service requests submitted for that location. This command helps residents gain insights into the issues reported in their neighborhood or community.
 
-![image](https://github.com/josephistired/SYRCityline-Data-Explorer/assets/65987360/9aeecd0e-09f2-4649-a659-d0f2f7942617)
+![image](https://github.com/josephistired/SYRCityline-Data-Explorer/assets/65987360/453d9a1f-a54b-4bec-87ff-920c11bd0878)
 
 
 ***/search id***: Retrieves detailed data about a specific request using its unique ID. By entering the ID of a request, users can access specific information such as the status, description, and progress updates related to that particular request.
 
-![image](https://github.com/josephistired/SYRCityline-Data-Explorer/assets/65987360/08352ec6-a3e8-476a-9040-ca6bb3a95df5)
+![image](https://github.com/josephistired/SYRCityline-Data-Explorer/assets/65987360/1f4ea0c6-5e66-4f92-921e-bb9c038bd6a4)
 
 
 ***/stats month***: Displays statistical insights about the data from SYRCityline for the current month. This command provides aggregated information, such as the total number of requests, the most common types of issues reported, or any notable trends observed within the current month's dataset.
 
-![image](https://github.com/josephistired/SYRCityline-Data-Explorer/assets/65987360/d16fd198-237a-4a97-989f-26a6a691d43b)
+![image](https://github.com/josephistired/SYRCityline-Data-Explorer/assets/65987360/d349bf73-e1e3-44c2-a309-7afb8f11ec26)
 
 
 ***/stats year***: Presents comprehensive statistics about the data from SYRCityline for the current year. Users can explore valuable information such as the total number of requests received throughout the year, the distribution of requests across different categories, or any significant patterns that have emerged.
 
-![image](https://github.com/josephistired/SYRCityline-Data-Explorer/assets/65987360/70290a8c-bec4-494d-972c-6d73af9c64ff)
+![image](https://github.com/josephistired/SYRCityline-Data-Explorer/assets/65987360/8426e386-206d-484d-856d-527000d452c2)
 
 
 ***/stats query***: Retrieves specific statistics for a given month and year combination from the SYRCityline Requests dataset. By inputting a specific month and year, users can obtain detailed insights into the data for that particular time frame. This command allows users to explore trends, identify patterns, and understand the overall service request landscape for a specific month and year.
 
-![image](https://github.com/josephistired/SYRCityline-Data-Explorer/assets/65987360/6d39da47-fcf1-4738-b612-015807f84641)
+![image](https://github.com/josephistired/SYRCityline-Data-Explorer/assets/65987360/5a3cb3fc-b151-4eed-b47e-0eb3180f173c)
 
 
 # ⚙️ Technology
