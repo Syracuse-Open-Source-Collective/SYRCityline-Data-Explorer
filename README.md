@@ -21,32 +21,32 @@ Join us in revolutionizing the way residents interact with the city they call ho
 
 ***/random request***: Fetches a random request from the SYRCityline Requests dataset. This command provides a glimpse into the diverse range of service requests made through SYRCityline, allowing users to explore different types of reported issues within the city.
 
-https://github.com/josephistired/Syracuse-Data-Challenge-May-Discord-Bot/assets/65987360/a6616230-f0ee-4186-b2b7-1e5d71d8731c
+![image](https://github.com/josephistired/SYRCityline-Data-Explorer/assets/65987360/efa61fc1-b40c-4cee-b859-8596c0ee315e)
 
 
 ***/search address***: Retrieves all requests associated with a specific address. By providing an address as input, users can obtain a comprehensive list of service requests submitted for that location. This command helps residents gain insights into the issues reported in their neighborhood or community.
 
-https://github.com/josephistired/Syracuse-Data-Challenge-May-Discord-Bot/assets/65987360/805eda85-ee8b-4d99-a4eb-416185c255a7
+![image](https://github.com/josephistired/SYRCityline-Data-Explorer/assets/65987360/9aeecd0e-09f2-4649-a659-d0f2f7942617)
 
 
 ***/search id***: Retrieves detailed data about a specific request using its unique ID. By entering the ID of a request, users can access specific information such as the status, description, and progress updates related to that particular request.
 
-https://github.com/josephistired/Syracuse-Data-Challenge-May-Discord-Bot/assets/65987360/1bfaa0cc-9511-472b-a162-41475eaa6db7
+![image](https://github.com/josephistired/SYRCityline-Data-Explorer/assets/65987360/08352ec6-a3e8-476a-9040-ca6bb3a95df5)
 
 
 ***/stats month***: Displays statistical insights about the data from SYRCityline for the current month. This command provides aggregated information, such as the total number of requests, the most common types of issues reported, or any notable trends observed within the current month's dataset.
 
-https://github.com/josephistired/Syracuse-Data-Challenge-May-Discord-Bot/assets/65987360/2eb6559b-7161-4be3-903b-e49653543303
+![image](https://github.com/josephistired/SYRCityline-Data-Explorer/assets/65987360/d16fd198-237a-4a97-989f-26a6a691d43b)
 
 
 ***/stats year***: Presents comprehensive statistics about the data from SYRCityline for the current year. Users can explore valuable information such as the total number of requests received throughout the year, the distribution of requests across different categories, or any significant patterns that have emerged.
 
-https://github.com/josephistired/Syracuse-Data-Challenge-May-Discord-Bot/assets/65987360/0a394e62-394c-430e-b6f1-bdb4fa21aa84
+![image](https://github.com/josephistired/SYRCityline-Data-Explorer/assets/65987360/70290a8c-bec4-494d-972c-6d73af9c64ff)
 
 
 ***/stats query***: Retrieves specific statistics for a given month and year combination from the SYRCityline Requests dataset. By inputting a specific month and year, users can obtain detailed insights into the data for that particular time frame. This command allows users to explore trends, identify patterns, and understand the overall service request landscape for a specific month and year.
 
-https://github.com/josephistired/Syracuse-Data-Challenge-May-Discord-Bot/assets/65987360/e6f7f7e8-24e0-4fb7-9fb6-ee39f0777e25
+![image](https://github.com/josephistired/SYRCityline-Data-Explorer/assets/65987360/6d39da47-fcf1-4738-b612-015807f84641)
 
 
 # ⚙️ Technology
@@ -61,6 +61,15 @@ To retrieve data from the SYRCityline API, the bot relies on [superagent](https:
 You have the option to host the bot yourself, follow below to be able to run the bot yourself.
 
 Prerequisites - You will need [Node.js](https://nodejs.org/en/download) version 18.60 or above, [Discord bot token](https://discord.com/developers/applications)!
+
+Run the following commands in your terminal!
+
+```
+git clone https://github.com/josephistired/SYRCityline-Data-Explorer
+cd SYRCityline-Data-Explorer
+npm install
+```
+
 
 1. Start by clicking on the "New Application" button in the Discord Developer Portal.
 Give your application a meaningful name and click "Create" to proceed.
