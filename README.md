@@ -11,8 +11,8 @@
 </div>
 
 # 🧠 Introduction
-Update -  The bot has won the May edition of the [Syracuse Data Challenge](https://data.syr.gov/pages/data-challenge)! [Link](https://data.syr.gov/pages/d5838bcbb4434ee39c82dbd13e06aa25)
 
+Update - The bot has won the May edition of the [Syracuse Data Challenge](https://data.syr.gov/pages/data-challenge)! [Link](https://data.syr.gov/pages/d5838bcbb4434ee39c82dbd13e06aa25)
 
 A bot developed for the May edition of the [Syracuse Data Challenge](https://data.syr.gov/pages/data-challenge). With a mission to harness the power of data, the bot provides an indispensable tool for accessing and presenting valuable information concerning service requests made through the SYRCityline system on Discord.
 
