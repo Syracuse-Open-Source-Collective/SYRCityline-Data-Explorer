@@ -3,6 +3,7 @@
 # 🤖 SYRCityline Data Explorer
 
 ![Syracuse Data Challenge (Social Post) (7)](https://github.com/josephistired/SYRCityline-Data-Explorer/assets/65987360/659127a0-cc59-4874-b9de-aa3aca14c4dd)
+![Winner](https://data.syr.gov/pages/d5838bcbb4434ee39c82dbd13e06aa25)
 
 </p>
 
