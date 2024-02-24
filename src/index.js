@@ -11,4 +11,6 @@ client.cooldowns = new Collection();
 const { loadEvents } = require("../handlers/eventLoader");
 loadEvents(client);
 
+require("../jobs/updateCSVcron");
+
 client.login(process.env.token);

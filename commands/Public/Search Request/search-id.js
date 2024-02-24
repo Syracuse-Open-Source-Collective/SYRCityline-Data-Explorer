@@ -113,7 +113,6 @@ module.exports = {
         .setFooter({
           text: `Request ID - ${body.features[0].attributes.Id} | I would like to clarify that the Syracuse Data Challenge logo is the rightful property of its owner and is not affiliated with me or my bot.`,
         });
-
       await interaction.editReply({
         content: "",
         embeds: [createSearchEmbed],

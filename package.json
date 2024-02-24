@@ -21,10 +21,12 @@
   },
   "homepage": "https://github.com/josephistired/Syracuse-Data-Challenge-May-Discord-Bot#readme",
   "dependencies": {
+    "csv-parser": "^3.0.0",
     "discord.js": "^14.11.0",
     "dotenv": "^16.0.3",
     "glob": "^10.2.2",
     "json2csv": "^6.0.0-alpha.2",
+    "node-cron": "^3.0.3",
     "nodemon": "^2.0.22",
     "superagent": "^8.0.9"
   }

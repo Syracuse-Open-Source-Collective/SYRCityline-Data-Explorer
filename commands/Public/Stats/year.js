@@ -1,104 +1,152 @@
+/**
+ * Module dependencies
+ */
 const {
   ChatInputCommandInteraction,
   EmbedBuilder,
   AttachmentBuilder,
 } = require("discord.js");
-const { fetchAllRecords } = require("../../../functions/fetchAllReconds");
+const parse = require("csv-parser");
+const fs = require("fs");
+const path = require("path");
 
+/**
+ * Constants
+ */
+const csvFilePath = path.join(
+  __dirname,
+  "..",
+  "..",
+  "..",
+  "data",
+  "database.csv"
+);
+const reply = require("../../../constants/replies");
+const {
+  getDatabaseUpdatedTime,
+} = require("../../../functions/getDatabaseUpdatedTime");
+
+/**
+ * Expose subCommand
+ */
 module.exports = {
   subCommand: "stats.year",
+
   /**
-   * @param {ChatInputCommandInteraction} interaction
+   * Execute function
+   *
+   * @param {ChatInputCommandInteraction} interaction - The command interaction
    */
   async execute(interaction) {
     try {
+      // Defer reply
       await interaction.deferReply();
 
+      // Inform user about data retrieval
       await interaction.followUp({
-        content:
-          "I am currently retrieving the necessary data from the API. Please bear with me for a moment!",
+        content: reply["data.search"],
       });
 
+      // Initialize categoryCounts object
       const categoryCounts = {};
 
-      fetchAllRecords().then((allRecords) => {
-        const currentDate = new Date();
-        const currentYear = currentDate.getFullYear();
-        let count = 0;
+      // Initialize csvData array
+      const csvData = [];
 
-        allRecords.forEach((feature) => {
-          const createdAt = feature.attributes.Created_at_local;
-          const createdAtObj = createdAt.split(" ")[0];
-          const date = new Date(createdAtObj);
-          const year = date.getFullYear();
+      // Read CSV file and process data
+      fs.createReadStream(csvFilePath)
+        .pipe(parse({ delimiter: ",", from_line: 2 }))
+        .on("data", (data) => csvData.push(data))
+        .on("end", () => {
+          // Get current year
+          const currentDate = new Date();
+          const currentYear = currentDate.getFullYear();
 
-          if (year === currentYear) {
-            count++;
-            const category = feature.attributes.Category;
+          // Filter records for the current year
+          const currentYearRecords = csvData.filter((record) => {
+            const createdAt = record.Created_at_local;
+            const year = createdAt.match(/\d{2}\/\d{2}\/(\d{4})/)[1];
+            return year === currentYear.toString();
+          });
+
+          // Get count of records for the current year
+          let count = currentYearRecords.length;
+
+          // Count category occurrences
+          currentYearRecords.forEach((record) => {
+            const category = record.Category;
             if (categoryCounts[category]) {
               categoryCounts[category]++;
             } else {
               categoryCounts[category] = 1;
             }
-          }
-        });
+          });
 
-        const sortedCategories = Object.keys(categoryCounts).sort(
-          (a, b) => categoryCounts[b] - categoryCounts[a]
-        );
-        const topCategories = sortedCategories.slice(0, 3);
-
-        const attachment = new AttachmentBuilder("assets/logo.png");
-
-        const monthembed = new EmbedBuilder()
-          .setTitle(`SyrCityLine Request Stats For ${currentYear}`)
-          .setAuthor({
-            name: `${interaction.member.user.tag} | ${interaction.member.user.id}`,
-            iconURL: `${interaction.user.displayAvatarURL()}`,
-          })
-          .setDescription(`The current request numbers for the current year.`)
-          .setThumbnail("attachment://logo.png")
-          .setColor("Orange")
-          .addFields(
-            {
-              name: "> Number of Requests:",
-              value: `${count}`,
-              inline: true,
-            },
-            {
-              name: "> Most Reported Category:",
-              value: `${sortedCategories[0]} (${
-                categoryCounts[sortedCategories[0]]
-              } requests)`,
-            },
-            {
-              name: "> Least Reported Category:",
-              value: `${sortedCategories[sortedCategories.length - 1]} (${
-                categoryCounts[sortedCategories[sortedCategories.length - 1]]
-              } requests)`,
-            },
-            {
-              name: "> Top Three Categories:",
-              value: topCategories
-                .map(
-                  (category) =>
-                    `${category} (${categoryCounts[category]} requests)`
-                )
-                .join("\n"),
-            }
+          // Sort categories by count
+          const sortedCategories = Object.keys(categoryCounts).sort(
+            (a, b) => categoryCounts[b] - categoryCounts[a]
           );
 
-        interaction.editReply({
-          embeds: [monthembed],
-          content: " ",
-          files: [attachment],
+          // Get top three categories
+          const topCategories = sortedCategories.slice(0, 3);
+
+          // Build attachment
+          const attachment = new AttachmentBuilder("assets/logo.png");
+
+          // Build embed
+          const yearEmbed = new EmbedBuilder()
+            .setTitle(
+              `SyrCityLine Request Stats For ${currentDate.getFullYear()}`
+            )
+            .setAuthor({
+              name: `${interaction.member.user.tag} | ${interaction.member.user.id}`,
+              iconURL: `${interaction.user.displayAvatarURL()}`,
+            })
+            .setDescription(`The current request numbers for the current year.`)
+            .setThumbnail("attachment://logo.png")
+            .setColor("Orange")
+            .addFields(
+              {
+                name: "> Number of Requests:",
+                value: `↳ ${count}`,
+                inline: true,
+              },
+              {
+                name: "> Most Reported Category:",
+                value: `↳ ${sortedCategories[0]} (${
+                  categoryCounts[sortedCategories[0]]
+                } requests)`,
+              },
+              {
+                name: "> Least Reported Category:",
+                value: `↳ ${sortedCategories[sortedCategories.length - 1]} (${
+                  categoryCounts[sortedCategories[sortedCategories.length - 1]]
+                } requests)`,
+              },
+              {
+                name: "> Top Three Categories:",
+                value: topCategories
+                  .map(
+                    (category) =>
+                      `↳ ${category} (${categoryCounts[category]} requests)`
+                  )
+                  .join("\n"),
+              }
+            )
+            .setFooter({ text: `${getDatabaseUpdatedTime()}` });
+
+          // Edit reply
+          interaction.editReply({
+            embeds: [yearEmbed],
+            content: " ",
+            files: [attachment],
+          });
         });
-      });
     } catch (error) {
       console.error(error);
+      // Handle error
       interaction.editReply({
-        content:
-          "We had an error fetching the data from the API! Please, try again at a later time!",
+        content: reply["data.error"],
       });
     }
   },
