@@ -29,7 +29,7 @@ module.exports = {
         new ButtonBuilder()
           .setLabel("Developer's Website")
           .setStyle(ButtonStyle.Link)
-          .setURL("https://josephcarmosino.website")
+          .setURL("https://josephcarmosino.com")
       );
 
       const info = new EmbedBuilder()

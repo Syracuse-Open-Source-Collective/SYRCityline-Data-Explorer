@@ -28,7 +28,7 @@ module.exports = {
           options
             .setName("id")
             .setDescription(
-              "Please provide the ID of the SYRCityline request in this format: 12737412."
+              "Please provide the ID of the SYRCityline request."
             )
             .setRequired(true)
         )

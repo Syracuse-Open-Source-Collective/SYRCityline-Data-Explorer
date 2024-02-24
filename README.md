@@ -48,7 +48,7 @@ Join us in revolutionizing how residents interact with the city they call home. 
 
 ![image](https://github.com/josephistired/SYRCityline-Data-Explorer/assets/65987360/5a3cb3fc-b151-4eed-b47e-0eb3180f173c)
 
-**_/update-csv**: Updates the bot's external database of requests. **Developer Only** **Note: the bot has a cron job that runs weekly that will update the database for you**
+**/update-csv**: Updates the bot's external database of requests. **Developer Only** **Note: the bot has a cron job that runs weekly that will update the database for you**
 
 # ⚙️ Technology
 

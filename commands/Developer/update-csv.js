@@ -4,6 +4,7 @@ const {
 } = require("discord.js");
 const { writeToCSV } = require("../../functions/writeToCSV");
 const { fetchAllRecords } = require("../../functions/fetchAllRecords");
+const fs = require("fs");
 
 module.exports = {
   developer: true,
