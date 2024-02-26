@@ -48,7 +48,7 @@ Join us in revolutionizing how residents interact with the city they call home. 
 
 ![image](https://github.com/josephistired/SYRCityline-Data-Explorer/assets/65987360/5a3cb3fc-b151-4eed-b47e-0eb3180f173c)
 
-**/update-csv**: Updates the bot's external database of requests. **Developer Only** **Note: the bot has a cron job that runs weekly that will update the database for you**
+**/update-csv**: Updates the bot's external database of requests. This command ensures that the bot's data is up-to-date with the latest information from the API. Developers can run this command to refresh the bot's database and access the most recent service request data.
 
 # ⚙️ Technology
 
@@ -60,7 +60,7 @@ To retrieve data from the SYRCityline API, the bot relies on [superagent](https:
 
 You have the option to host the bot yourself. Follow the instructions below to run the bot yourself.
 
-Prerequisites: You will need [Node.js](https://nodejs.org/en/download) version 18.60 or above, [Discord bot token](https://discord.com/developers/applications)!
+Prerequisites: You will need [Node.js](https://nodejs.org/en/download) version 18.60 or above, [Discord bot token](https://discord.com/developers/applications), and [Discord User ID](https://www.businessinsider.com/guides/tech/discord-id#:~:text=To%20find%20a%20user's%20Discord,sidebar%20and%20select%20Copy%20ID.)!
 
 Run the following commands in your terminal!
 
@@ -94,7 +94,7 @@ id=put id here
 
 SYRCityline Data Explorer is an open-source bot developed to foster transparency and collaboration. The bot's source code allows the community to explore, modify, and enhance according to their needs. You are encouraged to [invite](https://www.josephcarmosino.com/invite-SYRCityline-Data-Explorer) the bot to your Discord server and leverage its capabilities to access SYRCityline request data.
 
-If you wish to customize the bot, you can fork the repository and make it your own. Feel free to modify the code to suit your requirements or add new features. However, as the original developer, I won't provide support or accept responsibility for any changes or modifications made to the bot by others.
+If you wish to customize the bot, you can fork the repository and make it your own. Feel free to modify the code to suit your requirements or add new features. However, please ensure that you comply with the terms and conditions of the [Open Data Syracuse](https://data.syr.gov/pages/termsofuse). 
 
 By offering SYRCityline Data Explorer as an open-source project, the aim is to encourage collaboration, innovation, and community engagement. Join the project, contribute to its development, and unleash the potential of data-driven insights for Syracuse, New York residents.
 
