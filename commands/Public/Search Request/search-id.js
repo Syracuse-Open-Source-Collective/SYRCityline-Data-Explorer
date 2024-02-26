@@ -45,8 +45,8 @@ module.exports = {
       // Get ID
       const id = interaction.options.getString("id");
 
-      // Regex to remove commas from ID
-      const fixed_id = id.replace(/[,\s]/g, "");
+      // Regex to remove commas from ID, and non numeric characters
+      const fixed_id = id.replace(/[^0-9]/g, "");
 
       // Inform user about data retrieval
       await interaction.followUp({
