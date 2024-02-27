@@ -21,7 +21,7 @@ async function mutipleRequests(interaction, requests) {
     new EmbedBuilder()
       .setTitle(`SyrCityLine ${requests[currentPage].category} Request`)
       .setAuthor({
-        name: `${interaction.member.user.tag} | Request Followers - ${requests[currentPage].followers}`,
+        name: `${interaction.member.user.tag} | Current Request - ${currentPage} / ${requests.length}`,
         iconURL: `${interaction.user.displayAvatarURL()}`,
       })
       .setDescription(
@@ -101,7 +101,7 @@ async function mutipleRequests(interaction, requests) {
   const requestEmbed = createRequestEmbed(currentPage);
 
   const message = await interaction.editReply({
-    content: "",
+    content: `Below are the requests!`,
     embeds: [requestEmbed],
     files: [attachment],
     components: [buttons],

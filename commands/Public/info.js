@@ -57,7 +57,7 @@ module.exports = {
           },
           {
             name: "> Developer's Disord:",
-            value: "➥ joseph#5678",
+            value: "➥ josephistired.",
           }
         );
 

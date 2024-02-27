@@ -19,13 +19,12 @@ const csvFilePath = path.join(
   "database.csv"
 );
 const reply = require("../../../constants/replies");
-const { createAddressRegex } = require("../../../functions/createAddressRegex");
 
 /**
  * Expose subCommand
  */
 module.exports = {
-  subCommand: "search.address",
+  subCommand: "search.lat-long",
 
   /**
    * Execute function
@@ -37,8 +36,13 @@ module.exports = {
       // Defer reply
       await interaction.deferReply();
 
-      // Get address
-      const address = interaction.options.getString("address");
+      // Get latitude and longitude
+      const latitude = interaction.options.getString("latitude");
+      const longitude = interaction.options.getString("longitude");
+
+      // Regex to remove non numeric characters
+      const fixed_latitude = latitude.replace(/[^0-9, ., -]/g, "");
+      const fixed_longitude = longitude.replace(/[^0-9, ., -]/g, "");
 
       // Inform user about data retrieval
       await interaction.followUp({
@@ -55,21 +59,24 @@ module.exports = {
           csvData.push(row);
         })
         .on("end", async () => {
-          // Filter data based on address
+          // Filter data based on latitude and longitude
           const filteredData = csvData.filter((record) => {
-            if (record.Address == "") return false;
-            return record.Address == address;
-            // const addressRegex = createAddressRegex(address);
-            // return addressRegex.test(record.Address);
+            if (record.Lat == "" || record.Lng == "") return false;
+            return (
+              record.Lat == fixed_latitude && record.Lng == fixed_longitude
+            );
           });
 
-          // Check if data was found
-          if (filteredData.length === 0) {
+          // Check if there are records
+          if (!filteredData || filteredData.length === 0) {
             return interaction.editReply({
-              content: reply["data.notFound.address"],
+              content: reply["data.notFound.lat-long"],
             });
           }
 
+          console.log(filteredData);
+
+          // Map the data
           const requests = filteredData.map((record) => {
             return {
               id: record.Id,
@@ -90,7 +97,7 @@ module.exports = {
             };
           });
 
-          // Send data to mutipleRequests function
+          // Send the records
           await mutipleRequests(interaction, requests);
         });
     } catch (error) {

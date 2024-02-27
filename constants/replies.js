@@ -5,5 +5,6 @@ module.exports = {
     "We had an error fetching the data from the database! Please, try again at a later time!",
   "data.notFound.year": "No data was found for your requested query!",
   "data.notFound.id": "No data was found for your requested ID!",
-  "data.notFound.address": "No data was found for your requested address!"
+  "data.notFound.address": "No data was found for your requested address!",
+  "data.notFound.lat-long": "No data was found for your requested latitude and longitude."
 };

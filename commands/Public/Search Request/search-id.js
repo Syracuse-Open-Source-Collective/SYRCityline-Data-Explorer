@@ -151,7 +151,7 @@ module.exports = {
 
           // Edit reply
           interaction.editReply({
-            content: "",
+            content: `Below are the requests!`,
             embeds: [createSearchEmbed],
             files: [attachment],
           });
