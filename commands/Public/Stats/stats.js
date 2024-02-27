@@ -56,5 +56,12 @@ module.exports = {
             )
             .setRequired(true)
         )
-    ),
+    )
+    .addSubcommand((options) =>
+      options
+        .setName("overall")
+        .setDescription(
+          "Retrieve the overall stats from SYRCityLine Requests!"
+        )
+    )
 };
