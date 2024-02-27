@@ -1,14 +1,14 @@
 {
-  "name": "syracuse-data-challenge-may-discord-bot",
+  "name": "SYRCityline Data Explorer",
   "version": "1.0.0",
-  "description": "A bot for discord to compete in the syracuse open data challenge for May 2023.",
+  "description": "Through simple discord commands, SYRCityline Data Explorer empowers residents to access and explore comprehensive information about their service requests.",
   "main": "./src/index.js",
   "scripts": {
     "test": "nodemon"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/josephistired/Syracuse-Data-Challenge-May-Discord-Bot.git"
+    "url": "git+https://github.com/Syracuse-Open-Source-Collective/SYRCityline-Data-Explorer.git"
   },
   "keywords": [
     "bot",
@@ -17,9 +17,9 @@
   "author": "josephistired",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/josephistired/Syracuse-Data-Challenge-May-Discord-Bot/issues"
+    "url": "https://github.com/Syracuse-Open-Source-Collective/SYRCityline-Data-Explorer/issues"
   },
-  "homepage": "https://github.com/josephistired/Syracuse-Data-Challenge-May-Discord-Bot#readme",
+  "homepage": "https://github.com/Syracuse-Open-Source-Collective/SYRCityline-Data-Explorer#readme",
   "dependencies": {
     "csv-parser": "^3.0.0",
     "discord.js": "^14.11.0",
