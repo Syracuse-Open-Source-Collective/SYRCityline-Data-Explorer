@@ -25,7 +25,7 @@ module.exports = {
         new ButtonBuilder()
           .setLabel("Project's Github")
           .setStyle(ButtonStyle.Link)
-          .setURL("https://github.com/josephistired/SYRCityline-Data-Explorer"),
+          .setURL("https://github.com/Syracuse-Open-Source-Collective/SYRCityline-Data-Explorer"),
         new ButtonBuilder()
           .setLabel("Developer's Website")
           .setStyle(ButtonStyle.Link)
