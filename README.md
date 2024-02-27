@@ -52,7 +52,11 @@ Join us in revolutionizing how residents interact with the city they call home. 
 
 ![image](https://github.com/Syracuse-Open-Source-Collective/SYRCityline-Data-Explorer/assets/65987360/bc71d2c0-249c-4430-91c6-8397bf7c8fc8)
 
-**/update-csv**: Updates the bot's external database of requests. This command ensures that the bot's data is up-to-date with the latest information from the API. Developers can run this command to refresh the bot's database and access the most recent service request data.
+**_/stats overall_**: Provides an overview of the entire SYRCityline Requests dataset, offering comprehensive insights into the total number of requests, the most common issues reported, and other valuable information. This command allows users to gain a holistic understanding of the service request landscape within Syracuse, New York.
+
+![image](https://github.com/Syracuse-Open-Source-Collective/SYRCityline-Data-Explorer/assets/65987360/a007f25d-1d0a-41e5-bff0-b61ae2d0fb62)
+
+**_/update-csv_**: Updates the bot's external database of requests. This command ensures that the bot's data is up-to-date with the latest information from the API. Developers can run this command to refresh the bot's database and access the most recent service request data.
 
 # ⚙️ Technology
 
