@@ -50,6 +50,7 @@ module.exports = {
             .setName("year")
             .setDescription("Please choose the year!")
             .addChoices(
+              { name: "2024", value: "2024"},
               { name: "2023", value: "2023" },
               { name: "2022", value: "2022" },
               { name: "2021", value: "2021" }

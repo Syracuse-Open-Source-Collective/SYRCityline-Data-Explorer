@@ -74,8 +74,6 @@ module.exports = {
             });
           }
 
-          console.log(filteredData);
-
           // Map the data
           const requests = filteredData.map((record) => {
             return {

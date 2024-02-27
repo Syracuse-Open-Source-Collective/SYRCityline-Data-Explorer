@@ -68,20 +68,20 @@ module.exports = {
           const wantedMonth = wantedDate.getMonth();
           const realcurrentMonth = (wantedMonth + 1)
             .toString()
-            .padStart(2, "0");
 
           // Filter records for the current year and month
           const wantedRecords = csvData.filter((record) => {
             const createdAt = record.Created_at_local;
-            const year = createdAt.match(/\d{2}\/\d{2}\/(\d{4})/)[1];
-            const month = createdAt.match(/\d{2}\/(\d{2})\/\d{4}/)[1];
-            return year === wantedYear.toString() && month === realcurrentMonth;
+            const year = parseInt(createdAt.match(/\d{2}\/\d{2}\/(\d{4})/)[1]);
+            const month = parseInt(createdAt.match(/(\d{2})\/\d{2}\/\d{4}/)[1]);
+            console.log(createdAt, year, month, wantedYear, realcurrentMonth);
+            return year === wantedYear && month === wantedMonth;
           });
 
           // Get count of records for the current year
           let count = wantedRecords.length;
 
-          // If not records found, inform user, and exit.
+          // If no records found, inform user, and exit.
           if (count === 0) {
             interaction.editReply(reply["data.notFound.year"]);
             return;
