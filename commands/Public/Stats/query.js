@@ -65,16 +65,13 @@ module.exports = {
           // Get wanted date
           const wantedDate = new Date(year, month);
           const wantedYear = wantedDate.getFullYear();
-          const wantedMonth = wantedDate.getMonth();
-          const realcurrentMonth = (wantedMonth + 1)
-            .toString()
+          const wantedMonth = wantedDate.getMonth() + 1;
 
           // Filter records for the current year and month
           const wantedRecords = csvData.filter((record) => {
             const createdAt = record.Created_at_local;
             const year = parseInt(createdAt.match(/\d{2}\/\d{2}\/(\d{4})/)[1]);
             const month = parseInt(createdAt.match(/(\d{2})\/\d{2}\/\d{4}/)[1]);
-            console.log(createdAt, year, month, wantedYear, realcurrentMonth);
             return year === wantedYear && month === wantedMonth;
           });
 
@@ -111,7 +108,7 @@ module.exports = {
           // Build embed
           const queryembed = new EmbedBuilder()
             .setTitle(
-              `SyrCityLine Request Stats For ${realcurrentMonth}/${wantedYear}`
+              `SyrCityLine Request Stats For ${wantedDate.getMonth() + 1}/${wantedYear}` // Subtract 1 from wantedMonth to display the correct month
             )
             .setAuthor({
               name: `${interaction.member.user.tag} | ${interaction.member.user.id}`,

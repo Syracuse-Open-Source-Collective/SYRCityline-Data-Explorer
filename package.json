@@ -1,5 +1,5 @@
 {
-  "name": "SYRCityline Data Explorer",
+  "name": "SYRCitylineDataExplorer",
   "version": "1.0.0",
   "description": "Through simple discord commands, SYRCityline Data Explorer empowers residents to access and explore comprehensive information about their service requests.",
   "main": "./src/index.js",

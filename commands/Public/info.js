@@ -10,8 +10,8 @@ const {
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("info")
     .setDMPermission(false)
+    .setName("info")
     .setDescription("View information about this bot!"),
   /**
    * @param {ChatInputCommandInteraction} interaction
@@ -25,11 +25,19 @@ module.exports = {
         new ButtonBuilder()
           .setLabel("Project's Github")
           .setStyle(ButtonStyle.Link)
-          .setURL("https://github.com/Syracuse-Open-Source-Collective/SYRCityline-Data-Explorer"),
+          .setURL(
+            "https://github.com/Syracuse-Open-Source-Collective/SYRCityline-Data-Explorer"
+          ),
         new ButtonBuilder()
           .setLabel("Developer's Website")
           .setStyle(ButtonStyle.Link)
-          .setURL("https://josephcarmosino.com")
+          .setURL("https://josephcarmosino.com"),
+        new ButtonBuilder()
+          .setLabel("Invite Me")
+          .setStyle(ButtonStyle.Link)
+          .setURL(
+            "https://www.josephcarmosino.com/invite-SYRCityline-Data-Explorer"
+          )
       );
 
       const info = new EmbedBuilder()

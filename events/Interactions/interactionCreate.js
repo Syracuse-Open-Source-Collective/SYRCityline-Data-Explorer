@@ -1,9 +1,9 @@
 const {
   ChatInputCommandInteraction,
   Collection,
-  PermissionFlagsBits,
 } = require("discord.js");
 require("dotenv").config();
+
 module.exports = {
   name: "interactionCreate",
   /**
