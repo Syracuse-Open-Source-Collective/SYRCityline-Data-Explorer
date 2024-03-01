@@ -21,10 +21,11 @@ const csvFilePath = path.join(
   "data",
   "database.csv"
 );
-const reply = require("../../../constants/replies");
 const {
   getDatabaseUpdatedTime,
 } = require("../../../functions/getDatabaseUpdatedTime");
+const replyLocalizations = require("../../../localization/replies-localizations");
+const yearLocalizations = require("../../../localization/stats/year-localizations");
 
 /**
  * Expose subCommand
@@ -44,7 +45,9 @@ module.exports = {
 
       // Inform user about data retrieval
       await interaction.followUp({
-        content: reply["data.search"],
+        content:
+          replyLocalizations[interaction.locale]["data.search"] ??
+          replyLocalizations["en-US"]["data.search"],
       });
 
       // Initialize categoryCounts object
@@ -96,13 +99,22 @@ module.exports = {
           // Build embed
           const yearEmbed = new EmbedBuilder()
             .setTitle(
-              `SyrCityLine Request Stats For ${currentDate.getFullYear()}`
+              yearLocalizations[interaction.locale][
+                "Yearly Request Statistics"
+              ] ?? `SyrCityLine Request Stats For ${currentDate.getFullYear()}`
             )
             .setAuthor({
               name: `${interaction.member.user.tag} | ${interaction.member.user.id}`,
               iconURL: `${interaction.user.displayAvatarURL()}`,
             })
-            .setDescription(`The current request numbers for the current year.`)
+            .setDescription(
+              yearLocalizations[interaction.locale][
+                "The current request numbers for the current year."
+              ] ??
+                yearLocalizations["en-US"][
+                  "The current request numbers for the current year."
+                ]
+            )
             .setThumbnail("attachment://logo.png")
             .setColor("Orange")
             .addFields(
@@ -146,7 +158,9 @@ module.exports = {
       console.error(error);
       // Handle error
       interaction.editReply({
-        content: reply["data.error"],
+        content:
+          replyLocalizations[interaction.locale]["data.error"] ??
+          replyLocalizations["en-US"]["data.error"],
       });
     }
   },

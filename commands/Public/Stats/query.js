@@ -21,7 +21,6 @@ const csvFilePath = path.join(
   "data",
   "database.csv"
 );
-const reply = require("../../../constants/replies");
 const {
   getDatabaseUpdatedTime,
 } = require("../../../functions/getDatabaseUpdatedTime");

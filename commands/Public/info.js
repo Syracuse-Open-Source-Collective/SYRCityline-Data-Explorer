@@ -43,7 +43,7 @@ module.exports = {
         new ButtonBuilder()
           .setLabel(
             infoLocalizations[interaction.locale]["Project's Github"] ??
-              "Project's Github"
+              infoLocalizations[infoLocalizations["en-US"]]["Project's Github"]
           )
           .setStyle(ButtonStyle.Link)
           .setURL(
@@ -52,13 +52,16 @@ module.exports = {
         new ButtonBuilder()
           .setLabel(
             infoLocalizations[interaction.locale]["Developer's Website"] ??
-              "Developer's Website"
+              infoLocalizations[infoLocalizations["en-US"]][
+                "Developer's Website"
+              ]
           )
           .setStyle(ButtonStyle.Link)
           .setURL("https://josephcarmosino.com"),
         new ButtonBuilder()
           .setLabel(
-            infoLocalizations[interaction.locale]["Invite Me"] ?? "Invite Me"
+            infoLocalizations[interaction.locale]["Invite Me"] ??
+              infoLocalizations[infoLocalizations["en-US"]]["Invite Me"]
           )
           .setStyle(ButtonStyle.Link)
           .setURL(
@@ -82,7 +85,9 @@ module.exports = {
             infoLocalizations[interaction.locale][
               "I would like to clarify that the Syracuse Data Challenge logo is the rightful property of its owner and is not affiliated with me or my bot."
             ] ??
-            "I would like to clarify that the Syracuse Data Challenge logo is the rightful property of its owner and is not affiliated with me or my bot.",
+            infoLocalizations[infoLocalizations["en-US"]][
+              "I would like to clarify that the Syracuse Data Challenge logo is the rightful property of its owner and is not affiliated with me or my bot."
+            ],
         })
         .setThumbnail("attachment://logo.png")
         .setColor("Orange")
@@ -90,12 +95,14 @@ module.exports = {
           {
             name:
               infoLocalizations[interaction.locale]["> Description"] ??
-              "> Description:",
+              infoLocalizations[infoLocalizations["en-US"]]["> Description"],
             value:
               infoLocalizations[interaction.locale][
                 "➥ The purpose of creating this bot was to participate in the May edition of the Syracuse Data Challenge."
               ] ??
-              "➥ The purpose of creating this bot was to participate in the May edition of the Syracuse Data Challenge.",
+              infoLocalizations[infoLocalizations["en-US"]][
+                "➥ The purpose of creating this bot was to participate in the May edition of the Syracuse Data Challenge."
+              ],
           },
           {
             name:
@@ -104,13 +111,18 @@ module.exports = {
               infoLocalizations[interaction.locale][
                 "➥ This bot utilizes the API provided by data.syr.gov to enable users to conveniently search for SYRCityline requests."
               ] ??
-              "➥ This bot utilizes the API provided by data.syr.gov to enable users to conveniently search for SYRCityline requests.",
+              infoLocalizations[infoLocalizations["en-US"]][
+                "➥ This bot utilizes the API provided by data.syr.gov to enable users to conveniently search for SYRCityline requests."
+              ],
           },
           {
             name:
               infoLocalizations[interaction.locale][
                 "> Developer's Discord: "
-              ] ?? "> Developer's Discord: ",
+              ] ??
+              infoLocalizations[infoLocalizations["en-US"]][
+                "Developer's Discord: "
+              ],
             value: "➥ josephistired.",
           }
         );
