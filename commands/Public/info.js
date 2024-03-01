@@ -15,6 +15,7 @@ module.exports = {
     .setName("info")
     .setNameLocalizations({
       "es-ES": "información",
+      "zh-CN": "信息",
       fr: "info",
       uk: "інформація",
       it: "informazioni",

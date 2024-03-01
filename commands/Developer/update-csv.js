@@ -66,7 +66,7 @@ module.exports = {
         hour12: true,
       };
       const formattedDate = currentDate.toLocaleDateString("en-US", options);
-      const updatedTimeRow = `Database last updated: ${formattedDate}\n`;
+      const updatedTimeRow = `${formattedDate}\n`;
 
       // Write to database_updated_time.txt
       fs.writeFileSync(

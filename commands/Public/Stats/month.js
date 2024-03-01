@@ -24,6 +24,7 @@ const csvFilePath = path.join(
 const {
   getDatabaseUpdatedTime,
 } = require("../../../functions/getDatabaseUpdatedTime");
+const replyLocalizations = require("../../../localization/replies-localizations");
 
 /**
  * Expose subCommand
@@ -43,7 +44,9 @@ module.exports = {
 
       // Inform user about data retrieval
       await interaction.followUp({
-        content: reply["data.search"],
+        content:
+          replyLocalizations[interaction.locale]["data.search"] ??
+          replyLocalizations["en-US"]["data.search"],
       });
 
       // Initialize categoryCounts object
@@ -153,7 +156,9 @@ module.exports = {
     } catch (error) {
       console.error(error);
       interaction.editReply({
-        content: reply["data.error"],
+        content:
+          replyLocalizations[interaction.locale]["data.error"] ??
+          replyLocalizations["en-US"]["data.error"],
       });
     }
   },

@@ -21,11 +21,9 @@ const csvFilePath = path.join(
   "data",
   "database.csv"
 );
-const {
-  getDatabaseUpdatedTime,
-} = require("../../../functions/getDatabaseUpdatedTime");
 const replyLocalizations = require("../../../localization/replies-localizations");
-const yearLocalizations = require("../../../localization/stats/year-localizations");
+const yearLocalizations = require("../../../localization/stats-localizations/year-localizations");
+const databaseLocalizations = require("../../../localization/database-time-localization");
 
 /**
  * Expose subCommand
@@ -99,53 +97,63 @@ module.exports = {
           // Build embed
           const yearEmbed = new EmbedBuilder()
             .setTitle(
-              yearLocalizations[interaction.locale][
-                "Yearly Request Statistics"
-              ] ?? `SyrCityLine Request Stats For ${currentDate.getFullYear()}`
+              yearLocalizations[interaction.locale].embedtitle(currentYear) ??
+                yearLocalizations["en-US"].embedtitle(currentYear)
             )
             .setAuthor({
               name: `${interaction.member.user.tag} | ${interaction.member.user.id}`,
               iconURL: `${interaction.user.displayAvatarURL()}`,
             })
             .setDescription(
-              yearLocalizations[interaction.locale][
-                "The current request numbers for the current year."
-              ] ??
-                yearLocalizations["en-US"][
-                  "The current request numbers for the current year."
-                ]
+              yearLocalizations[interaction.locale].embeddescription ??
+                yearLocalizations["en-US"].embeddescription
             )
             .setThumbnail("attachment://logo.png")
             .setColor("Orange")
             .addFields(
               {
-                name: "> Number of Requests:",
+                name:
+                  yearLocalizations[interaction.locale].embednumberofrequests ??
+                  yearLocalizations["en-US"].embednumberofrequests,
                 value: `↳ ${count}`,
                 inline: true,
               },
               {
-                name: "> Most Reported Category:",
+                name:
+                  yearLocalizations[interaction.locale].embedmostreported ??
+                  yearLocalizations["en-US"].embedmostreported,
                 value: `↳ ${sortedCategories[0]} (${
                   categoryCounts[sortedCategories[0]]
                 } requests)`,
               },
               {
-                name: "> Least Reported Category:",
+                name:
+                  yearLocalizations[interaction.locale].embedleastreported ??
+                  yearLocalizations["en-US"].embedleastreported,
                 value: `↳ ${sortedCategories[sortedCategories.length - 1]} (${
                   categoryCounts[sortedCategories[sortedCategories.length - 1]]
                 } requests)`,
               },
               {
-                name: "> Top Three Categories:",
+                name:
+                  yearLocalizations[interaction.locale].embedtopthree ??
+                  yearLocalizations["en-US"].embedtopthree,
                 value: topCategories
                   .map(
                     (category) =>
-                      `↳ ${category} (${categoryCounts[category]} requests)`
+                      `↳ ${category} (${categoryCounts[category]} ${
+                        yearLocalizations[interaction.locale].embedrequests ??
+                        yearLocalizations["en-US"].embedrequests
+                      })`
                   )
                   .join("\n"),
               }
             )
-            .setFooter({ text: `${getDatabaseUpdatedTime()}` });
+            .setFooter({
+              text:
+                databaseLocalizations[interaction.locale].databaseupdated ??
+                databaseLocalizations["en-US"].databaseupdated,
+            });
 
           // Edit reply
           interaction.editReply({
