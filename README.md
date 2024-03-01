@@ -56,6 +56,10 @@ Join us in revolutionizing how residents interact with the city they call home. 
 
 ![image](https://github.com/Syracuse-Open-Source-Collective/SYRCityline-Data-Explorer/assets/65987360/a007f25d-1d0a-41e5-bff0-b61ae2d0fb62)
 
+**_/chart summary_**: Generates a summary chart of the SYRCityline Requests dataset for a given year, and category. This command provides a visual representation of the data, allowing users to gain a quick understanding of the distribution of a category across different categories throughout the year.
+
+![image](https://github.com/Syracuse-Open-Source-Collective/SYRCityline-Data-Explorer/assets/65987360/3def6a63-8dff-4d0b-9e61-54302cec326d)
+
 **_/update-csv_**: Updates the bot's external database of requests. This command ensures that the bot's data is up-to-date with the latest information from the API. Developers can run this command to refresh the bot's database and access the most recent service request data.
 
 # ⚙️ Technology

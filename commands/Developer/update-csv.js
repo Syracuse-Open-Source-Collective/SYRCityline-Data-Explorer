@@ -22,7 +22,7 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("update-csv")
     .setDescription("Updates the bot's CSV file."),
-  
+
   /**
    * Execute function
    *
@@ -66,7 +66,7 @@ module.exports = {
         hour12: true,
       };
       const formattedDate = currentDate.toLocaleDateString("en-US", options);
-      const updatedTimeRow = `Database last updated time: ${formattedDate}\n`;
+      const updatedTimeRow = `Database last updated: ${formattedDate}\n`;
 
       // Write to database_updated_time.txt
       fs.writeFileSync(

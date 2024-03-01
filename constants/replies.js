@@ -6,5 +6,8 @@ module.exports = {
   "data.notFound.year": "No data was found for your requested query!",
   "data.notFound.id": "No data was found for your requested ID!",
   "data.notFound.address": "No data was found for your requested address!",
-  "data.notFound.lat-long": "No data was found for your requested latitude and longitude."
+  "data.notFound.lat-long":
+    "No data was found for your requested latitude and longitude.",
+  "data.notFound.chart-year-category":
+    "No data was found for your requested year and category!",
 };
