@@ -81,7 +81,7 @@ module.exports = {
 
           // If no records found, inform user, and exit.
           if (count === 0) {
-            interaction.reply(
+            interaction.editReply(
               replyLocalizations[interaction.locale]["data.notFound.year"] ??
                 replyLocalizations["en-US"]["data.notFound.year"]
             );

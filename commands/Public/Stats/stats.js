@@ -14,6 +14,15 @@ module.exports = {
     })
     .setDMPermission(false)
     .setDescription("View stats about the data from SYRCityline!")
+    .setDescriptionLocalizations({
+      "es-ES": "¡Vea estadísticas sobre los datos de SYRCityline!",
+      "zh-CN": "查看有关SYRCityline数据的统计信息！",
+      fr: "Voir les statistiques sur les données de SYRCityline !",
+      uk: "Перегляньте статистику про дані від SYRCityline!",
+      it: "Visualizza le statistiche sui dati di SYRCityline!",
+      // vi: "Xem thống kê về dữ liệu từ SYRCityline!",
+      de: "Sehen Sie sich Statistiken zu den Daten von SYRCityline an!",
+    })
     .addSubcommand((options) =>
       options
         .setName("month")
@@ -114,18 +123,150 @@ module.exports = {
               de: "Bitte wählen Sie den Monat!",
             })
             .addChoices(
-              { name: "January", value: "0" },
-              { name: "February", value: "1" },
-              { name: "March", value: "2" },
-              { name: "April", value: "3" },
-              { name: "May", value: "4" },
-              { name: "June", value: "5" },
-              { name: "July", value: "6" },
-              { name: "August", value: "7" },
-              { name: "September", value: "8" },
-              { name: "October", value: "9" },
-              { name: "November", value: "10" },
-              { name: "December", value: "11" }
+              {
+                name: "January",
+                name_localizations: {
+                  "es-ES": "enero",
+                  "zh-CN": "一月",
+                  fr: "janvier",
+                  uk: "січень",
+                  it: "gennaio",
+                  de: "Januar",
+                },
+                value: "0",
+              },
+              {
+                name: "February",
+                name_localizations: {
+                  "es-ES": "febrero",
+                  "zh-CN": "二月",
+                  fr: "février",
+                  uk: "лютий",
+                  it: "febbraio",
+                  de: "Februar",
+                },
+                value: "1",
+              },
+              {
+                name: "March",
+                name_localizations: {
+                  "es-ES": "marzo",
+                  "zh-CN": "三月",
+                  fr: "mars",
+                  uk: "березень",
+                  it: "marzo",
+                  de: "März",
+                },
+                value: "2",
+              },
+              {
+                name: "April",
+                name_localizations: {
+                  "es-ES": "abril",
+                  "zh-CN": "四月",
+                  fr: "avril",
+                  uk: "квітень",
+                  it: "aprile",
+                  de: "April",
+                },
+                value: "3",
+              },
+              {
+                name: "May",
+                name_localizations: {
+                  "es-ES": "mayo",
+                  "zh-CN": "五月",
+                  fr: "mai",
+                  uk: "травень",
+                  it: "maggio",
+                  de: "Mai",
+                },
+                value: "4",
+              },
+              {
+                name: "June",
+                name_localizations: {
+                  "es-ES": "junio",
+                  "zh-CN": "六月",
+                  fr: "juin",
+                  uk: "червень",
+                  it: "giugno",
+                  de: "Juni",
+                },
+                value: "5",
+              },
+              {
+                name: "July",
+                name_localizations: {
+                  "es-ES": "julio",
+                  "zh-CN": "七月",
+                  fr: "juillet",
+                  uk: "липень",
+                  it: "luglio",
+                  de: "Juli",
+                },
+                value: "6",
+              },
+              {
+                name: "August",
+                name_localizations: {
+                  "es-ES": "agosto",
+                  "zh-CN": "八月",
+                  fr: "août",
+                  uk: "серпень",
+                  it: "agosto",
+                  de: "August",
+                },
+                value: "7",
+              },
+              {
+                name: "September",
+                name_localizations: {
+                  "es-ES": "septiembre",
+                  "zh-CN": "九月",
+                  fr: "septembre",
+                  uk: "вересень",
+                  it: "settembre",
+                  de: "September",
+                },
+                value: "8",
+              },
+              {
+                name: "October",
+                name_localizations: {
+                  "es-ES": "octubre",
+                  "zh-CN": "十月",
+                  fr: "octobre",
+                  uk: "жовтень",
+                  it: "ottobre",
+                  de: "Oktober",
+                },
+                value: "9",
+              },
+              {
+                name: "November",
+                name_localizations: {
+                  "es-ES": "noviembre",
+                  "zh-CN": "十一月",
+                  fr: "novembre",
+                  uk: "листопад",
+                  it: "novembre",
+                  de: "November",
+                },
+                value: "10",
+              },
+              {
+                name: "December",
+                name_localizations: {
+                  "es-ES": "diciembre",
+                  "zh-CN": "十二月",
+                  fr: "décembre",
+                  uk: "грудень",
+                  it: "dicembre",
+                  de: "Dezember",
+                },
+                value: "11",
+              }
             )
             .setRequired(true)
         )

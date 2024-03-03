@@ -72,7 +72,7 @@ const locales = {
   de: {
     // german
     embedtitle: (year) => `SYRCityline-Anfragen für ${year}`,
-    embedtitle: "Die aktuellen Anforderungszahlen für das laufende Jahr.",
+    embeddescription: "Die aktuellen Anforderungszahlen für das laufende Jahr.",
     embednumberofrequests: "> Anzahl der Anfragen",
     embedmostreported: "> Am meisten gemeldete Kategorie",
     embedleastreported: "> Am wenigsten gemeldete Kategorie",

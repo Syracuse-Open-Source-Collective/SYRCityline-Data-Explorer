@@ -12,7 +12,7 @@ const fs = require("fs");
  */
 const { writeToCSV } = require("../../functions/writeToCSV");
 const { fetchAllRecords } = require("../../functions/fetchAllRecords");
-const reply = require("../../constants/replies");
+const replyLocalizations = require("../../localization/replies-localizations");
 
 /**
  * Expose command
@@ -21,7 +21,23 @@ module.exports = {
   developer: true,
   data: new SlashCommandBuilder()
     .setName("update-csv")
-    .setDescription("Updates the bot's CSV file."),
+    .setNameLocalizations({
+      "es-ES": "actualizar-csv",
+      "zh-CN": "更新csv",
+      fr: "mettre-à-jour-csv",
+      uk: "оновити-csv",
+      it: "aggiorna-csv",
+      de: "aktualisieren-csv",
+    })
+    .setDescription("Updates the bot's CSV file.")
+    .setDescriptionLocalizations({
+      "es-ES": "Actualiza el archivo CSV del bot.",
+      "zh-CN": "更新机器人的CSV文件。",
+      fr: "Met à jour le fichier CSV du bot.",
+      uk: "Оновлює файл CSV бота.",
+      it: "Aggiorna il file CSV del bot.",
+      de: "Aktualisiert die CSV-Datei des Bots.",
+    }),
 
   /**
    * Execute function
@@ -35,7 +51,9 @@ module.exports = {
 
       // Inform user about data retrieval
       await interaction.followUp({
-        content: reply["data.search"],
+        content:
+          replyLocalizations[interaction.locale]["data.search"] ??
+          replyLocalizations["en-US"]["data.search"],
       });
 
       // Fetch all records
@@ -43,8 +61,9 @@ module.exports = {
 
       // Check if there are records
       if (!allRecords || allRecords.length === 0) {
-        throw interaction.editReply(
-          "Failed to fetch data from API or no data available."
+        return interaction.editReply(
+          replyLocalizations[interaction.locale]["data.notfound"] ??
+            replyLocalizations["en-US"]["data.notfound"]
         );
       }
 
@@ -52,7 +71,10 @@ module.exports = {
       await writeToCSV(allRecords);
 
       // Inform user about successful update
-      await interaction.editReply("CSV file has been successfully updated.");
+      await interaction.editReply(
+        replyLocalizations[interaction.locale]["data.updated"] ??
+          replyLocalizations["en-US"]["data.updated"]
+      );
 
       // Create the updated time
       const currentDate = new Date();
@@ -79,7 +101,8 @@ module.exports = {
     } catch (error) {
       console.error("Error updating CSV:", error.message);
       await interaction.editReply(
-        "Failed to update CSV file. Please try again later."
+        replyLocalizations[interaction.locale]["data.failedupdate"] ??
+          replyLocalizations["en-US"]["data.failedupdate"]
       );
     }
   },

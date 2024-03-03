@@ -22,7 +22,7 @@ const csvFilePath = path.join(
   "database.csv"
 );
 const replyLocalizations = require("../../../localization/replies-localizations");
-const yearLocalizations = require("../../../localization/stats-localizations/year-localization");
+const yearlocalizations = require("../../../localization/stats-localizations/year-localization");
 const databaselocalizations = require("../../../localization/database-time-localization");
 
 /**
@@ -75,7 +75,7 @@ module.exports = {
 
           // If no records found, inform user, and exit.
           if (count === 0) {
-            interaction.reply(
+            interaction.editReply(
               replyLocalizations[interaction.locale]["data.notFound.year"] ??
                 replyLocalizations["en-US"]["data.notFound.year"]
             );
@@ -106,59 +106,59 @@ module.exports = {
           // Build embed
           const yearEmbed = new EmbedBuilder()
             .setTitle(
-              yearLocalizations[interaction.locale].embedtitle(currentYear) ??
-                yearLocalizations["en-US"].embedtitle(currentYear)
+              yearlocalizations[interaction.locale].embedtitle(currentYear) ??
+                yearlocatlizations["en-US"].embedtitle(currentYear)
             )
             .setAuthor({
               name: `${interaction.member.user.tag} | ${interaction.member.user.id}`,
               iconURL: `${interaction.user.displayAvatarURL()}`,
             })
             .setDescription(
-              yearLocalizations[interaction.locale].embeddescription ??
-                yearLocalizations["en-US"].embeddescription
+              yearlocalizations[interaction.locale].embeddescription ??
+                yearlocalizations["en-US"].embeddescription
             )
             .setThumbnail("attachment://logo.png")
             .setColor("Orange")
             .addFields(
               {
                 name:
-                  yearLocalizations[interaction.locale].embednumberofrequests ??
-                  yearLocalizations["en-US"].embednumberofrequests,
+                  yearlocalizations[interaction.locale].embednumberofrequests ??
+                  yearlocalizations["en-US"].embednumberofrequests,
                 value: `↳ ${count}`,
                 inline: true,
               },
               {
                 name:
-                  yearLocalizations[interaction.locale].embedmostreported ??
-                  yearLocalizations["en-US"].embedmostreported,
+                  yearlocalizations[interaction.locale].embedmostreported ??
+                  yearlocalizations["en-US"].embedmostreported,
                 value: `↳ ${sortedCategories[0]} (${
                   categoryCounts[sortedCategories[0]]
                 } ${
-                  yearLocalizations[interaction.locale].embedrequests ??
-                  yearLocalizations["en-US"].embedrequests
+                  yearlocalizations[interaction.locale].embedrequests ??
+                  yearlocalizations["en-US"].embedrequests
                 })`,
               },
               {
                 name:
-                  yearLocalizations[interaction.locale].embedleastreported ??
-                  yearLocalizations["en-US"].embedleastreported,
+                  yearlocalizations[interaction.locale].embedleastreported ??
+                  yearlocalizations["en-US"].embedleastreported,
                 value: `↳ ${sortedCategories[sortedCategories.length - 1]} (${
                   categoryCounts[sortedCategories[sortedCategories.length - 1]]
                 } ${
-                  yearLocalizations[interaction.locale].embedrequests ??
-                  yearLocalizations["en-US"].embedrequests
+                  yearlocalizations[interaction.locale].embedrequests ??
+                  yearlocalizations["en-US"].embedrequests
                 })`,
               },
               {
                 name:
-                  yearLocalizations[interaction.locale].embedtopthree ??
-                  yearLocalizations["en-US"].embedtopthree,
+                  yearlocalizations[interaction.locale].embedtopthree ??
+                  yearlocalizations["en-US"].embedtopthree,
                 value: topCategories
                   .map(
                     (category) =>
                       `↳ ${category} (${categoryCounts[category]} ${
-                        yearLocalizations[interaction.locale].embedrequests ??
-                        yearLocalizations["en-US"].embedrequests
+                        yearlocalizations[interaction.locale].embedrequests ??
+                        yearlocalizations["en-US"].embedrequests
                       })`
                   )
                   .join("\n"),

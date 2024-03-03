@@ -25,10 +25,9 @@ const csvFilePath = path.join(
   "data",
   "database.csv"
 );
-const reply = require("../../../constants/replies");
-const {
-  getDatabaseUpdatedTime,
-} = require("../../../functions/getDatabaseUpdatedTime");
+const replyLocalizations = require("../../../localization/replies-localizations");
+const requestlocalizations = require("../../../localization/randomrequest-localizations/request-localization");
+const databaselocalizations = require("../../../localization/database-time-localization");
 
 /**
  * Expose subCommand
@@ -51,7 +50,9 @@ module.exports = {
 
       // Inform user about data retrieval
       await interaction.followUp({
-        content: reply["data.search"],
+        content:
+          replyLocalizations[interaction.locale]["data.search"] ??
+          replyLocalizations["en-US"]["data.search"],
       });
 
       // Initialize csvData array
@@ -73,7 +74,9 @@ module.exports = {
           // If body is empty, inform user, and exit.
           if (filteredData.length === 0) {
             return interaction.editReply({
-              content: reply["data.error"],
+              content:
+                replyLocalizations[interaction.locale]["data.error"] ??
+                replyLocalizations["en-US"]["data.error"],
             });
           }
 
@@ -87,23 +90,43 @@ module.exports = {
 
           // Build embed
           const createRequestEmbed = new EmbedBuilder()
-            .setTitle(`SyrCityLine ${requestedData.Category} Request`)
+            .setTitle(
+              requestlocalizations[interaction.locale].embedtitle(choice) ??
+                requestlocalizations["en-US"].embedtitle(choice)
+            )
             .setAuthor({
-              name: `${interaction.user.tag} | Request Followers - ${requestedData.Rating}`,
+              name:
+                requestlocalizations[interaction.locale].embedauthor(
+                  interaction,
+                  requestedData
+                ) ??
+                requestlocalizations["en-US"].embedauthor(
+                  interaction,
+                  requestedData
+                ),
               iconURL: interaction.user.displayAvatarURL(),
             })
             .setDescription(
-              `Description: ***${
-                requestedData.Description || "No Description Provided"
-              }***`
+              requestlocalizations[interaction.locale].embeddescription(
+                requestedData
+              ) ?? requestlocalizations["en-US"].embeddescription(requestedData)
             )
             .setThumbnail("attachment://logo.png")
             .setURL(requestedData.URL)
             .setColor("Orange")
             .addFields(
               {
-                name: "> Summary:",
-                value: `↳ ${requestedData.Summary || "No Summary provided"}`,
+                name:
+                  requestlocalizations[interaction.locale].embedsummary(
+                    requestedData
+                  ).name ??
+                  requestlocalizations["en-US"].embedsummary(requestedData),
+                value:
+                  requestlocalizations[interaction.locale].embedsummary(
+                    requestedData
+                  ).value ??
+                  requestlocalizations["en-US"].embedsummary(requestedData)
+                    .value,
                 inline: true,
               },
               {
@@ -151,7 +174,11 @@ module.exports = {
                 inline: true,
               }
             )
-            .setFooter({ text: `${getDatabaseUpdatedTime()}` });
+            .setFooter({
+              text:
+                databaselocalizations[interaction.locale].databaseupdated ??
+                databaselocalizations["en-US"].databaseupdated,
+            });
 
           // Build row
           const row = new ActionRowBuilder().addComponents(
@@ -268,7 +295,11 @@ module.exports = {
                     inline: true,
                   }
                 )
-                .setFooter({ text: `${getDatabaseUpdatedTime()}` });
+                .setFooter({
+                  text:
+                    databaselocalizations[interaction.locale].databaseupdated ??
+                    databaselocalizations["en-US"].databaseupdated,
+                });
 
               await interaction.update({
                 content: `Showing you a random request in the category of \`${newRequestedData.Category}\`!`,
@@ -292,8 +323,11 @@ module.exports = {
     } catch (error) {
       console.error(error);
       // Handle error
+      // Handle error
       interaction.editReply({
-        content: reply["data.error"],
+        content:
+          replyLocalizations[interaction.locale]["data.error"] ??
+          replyLocalizations["en-US"]["data.error"],
       });
     }
   },
