@@ -22,8 +22,8 @@ const csvFilePath = path.join(
   "database.csv"
 );
 const replyLocalizations = require("../../../localization/replies-localizations");
-const yearLocalizations = require("../../../localization/stats-localizations/year-localizations");
-const databaseLocalizations = require("../../../localization/database-time-localization");
+const yearLocalizations = require("../../../localization/stats-localizations/year-localization");
+const databaselocalizations = require("../../../localization/database-time-localization");
 
 /**
  * Expose subCommand
@@ -72,6 +72,15 @@ module.exports = {
 
           // Get count of records for the current year
           let count = currentYearRecords.length;
+
+          // If no records found, inform user, and exit.
+          if (count === 0) {
+            interaction.reply(
+              replyLocalizations[interaction.locale]["data.notFound.year"] ??
+                replyLocalizations["en-US"]["data.notFound.year"]
+            );
+            return;
+          }
 
           // Count category occurrences
           currentYearRecords.forEach((record) => {
@@ -124,7 +133,10 @@ module.exports = {
                   yearLocalizations["en-US"].embedmostreported,
                 value: `↳ ${sortedCategories[0]} (${
                   categoryCounts[sortedCategories[0]]
-                } requests)`,
+                } ${
+                  yearLocalizations[interaction.locale].embedrequests ??
+                  yearLocalizations["en-US"].embedrequests
+                })`,
               },
               {
                 name:
@@ -132,7 +144,10 @@ module.exports = {
                   yearLocalizations["en-US"].embedleastreported,
                 value: `↳ ${sortedCategories[sortedCategories.length - 1]} (${
                   categoryCounts[sortedCategories[sortedCategories.length - 1]]
-                } requests)`,
+                } ${
+                  yearLocalizations[interaction.locale].embedrequests ??
+                  yearLocalizations["en-US"].embedrequests
+                })`,
               },
               {
                 name:
@@ -151,8 +166,8 @@ module.exports = {
             )
             .setFooter({
               text:
-                databaseLocalizations[interaction.locale].databaseupdated ??
-                databaseLocalizations["en-US"].databaseupdated,
+                databaselocalizations[interaction.locale].databaseupdated ??
+                databaselocalizations["en-US"].databaseupdated,
             });
 
           // Edit reply

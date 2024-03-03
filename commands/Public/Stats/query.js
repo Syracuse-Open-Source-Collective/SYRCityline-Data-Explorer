@@ -21,9 +21,9 @@ const csvFilePath = path.join(
   "data",
   "database.csv"
 );
-const {
-  getDatabaseUpdatedTime,
-} = require("../../../functions/getDatabaseUpdatedTime");
+const replyLocalizations = require("../../../localization/replies-localizations");
+const querylocalizations = require("../../../localization/stats-localizations/query-localization");
+const databaselocalizations = require("../../../localization/database-time-localization");
 
 /**
  * Expose subCommand
@@ -47,7 +47,9 @@ module.exports = {
 
       // Inform user about data retrieval
       await interaction.followUp({
-        content: reply["data.search"],
+        content:
+          replyLocalizations[interaction.locale]["data.search"] ??
+          replyLocalizations["en-US"]["data.search"],
       });
 
       // Initialize categoryCounts object
@@ -79,7 +81,10 @@ module.exports = {
 
           // If no records found, inform user, and exit.
           if (count === 0) {
-            interaction.editReply(reply["data.notFound.year"]);
+            interaction.reply(
+              replyLocalizations[interaction.locale]["data.notFound.year"] ??
+                replyLocalizations["en-US"]["data.notFound.year"]
+            );
             return;
           }
 
@@ -107,44 +112,78 @@ module.exports = {
           // Build embed
           const queryembed = new EmbedBuilder()
             .setTitle(
-              `SyrCityLine Request Stats For ${wantedDate.getMonth() + 1}/${wantedYear}` // Subtract 1 from wantedMonth to display the correct month
+              querylocalizations[interaction.locale]["embedtitle"](
+                wantedDate.getMonth() + 1,
+                wantedYear
+              ) ??
+                querylocalizations["en-US"]["embedtitle"](
+                  wantedDate.getMonth() + 1,
+                  wantedYear
+                )
             )
             .setAuthor({
               name: `${interaction.member.user.tag} | ${interaction.member.user.id}`,
               iconURL: `${interaction.user.displayAvatarURL()}`,
             })
-            .setDescription(`The request count for your selected month, year.`)
+            .setDescription(
+              querylocalizations[interaction.locale]["embeddescription"] ??
+                querylocalizations["en-US"]["embeddescription"]
+            )
             .setThumbnail("attachment://logo.png")
             .setColor("Orange")
             .addFields(
               {
-                name: "> Number of Requests:",
+                name:
+                  querylocalizations[interaction.locale][
+                    "embednumberofrequests"
+                  ] ?? querylocalizations["en-US"]["embednumberofrequests"],
                 value: `↳ ${count}`,
                 inline: true,
               },
               {
-                name: "> Most Reported Category:",
+                name:
+                  querylocalizations[interaction.locale]["embedmostreported"] ??
+                  querylocalizations["en-US"]["embedmostreported"],
                 value: `${sortedCategories[0]} (${
                   categoryCounts[sortedCategories[0]]
-                } requests)`,
+                } ${
+                  querylocalizations[interaction.locale]["embedrequests"] ??
+                  querylocalizations["en-US"]["embedrequests"]
+                })`,
               },
               {
-                name: "> Least Reported Category:",
+                name:
+                  querylocalizations[interaction.locale][
+                    "embedleastreported"
+                  ] ?? querylocalizations["en-US"]["embedleastreported"],
                 value: `↳ ${sortedCategories[sortedCategories.length - 1]} (${
                   categoryCounts[sortedCategories[sortedCategories.length - 1]]
-                } requests)`,
+                } ${
+                  querylocalizations[interaction.locale]["embedrequests"] ??
+                  querylocalizations["en-US"]["embedrequests"]
+                })`,
               },
               {
-                name: "> Top Three Categories:",
+                name:
+                  querylocalizations[interaction.locale]["embedtopreported"] ??
+                  querylocalizations["en-US"]["embedtopreported"],
                 value: topCategories
                   .map(
                     (category) =>
-                      `↳ ${category} (${categoryCounts[category]} requests)`
+                      `↳ ${category} (${categoryCounts[category]} ${
+                        querylocalizations[interaction.locale][
+                          "embedrequests"
+                        ] ?? querylocalizations["en-US"]["embedrequests"]
+                      })`
                   )
                   .join("\n"),
               }
             )
-            .setFooter({ text: `${getDatabaseUpdatedTime()}` });
+            .setFooter({
+              text:
+                databaselocalizations[interaction.locale].databaseupdated ??
+                databaselocalizations["en-US"].databaseupdated,
+            });
 
           // Edit reply
           interaction.editReply({
@@ -157,7 +196,9 @@ module.exports = {
       console.error(error);
       // Handle error
       interaction.editReply({
-        content: reply["data.error"],
+        content:
+          replyLocalizations[interaction.locale]["data.error"] ??
+          replyLocalizations["en-US"]["data.error"],
       });
     }
   },

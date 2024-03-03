@@ -29,3 +29,5 @@ const locales = {
     databaseupdated: `Datenbank zuletzt aktualisiert: ${getDatabaseUpdatedTime()}`,
   },
 };
+
+module.exports = locales.databaselocalizations = locales;

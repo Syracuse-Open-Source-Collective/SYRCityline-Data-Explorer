@@ -21,9 +21,9 @@ const csvFilePath = path.join(
   "data",
   "database.csv"
 );
-const {
-  getDatabaseUpdatedTime,
-} = require("../../../functions/getDatabaseUpdatedTime");
+const replyLocalizations = require("../../../localization/replies-localizations");
+const overalllocalizations = require("../../../localization/stats-localizations/overall-localization");
+const databaselocalizations = require("../../../localization/database-time-localization");
 
 /**
  * Expose subCommand
@@ -43,7 +43,9 @@ module.exports = {
 
       // Inform user about data retrieval
       await interaction.followUp({
-        content: reply["data.search"],
+        content:
+          replyLocalizations[interaction.locale]["data.search"] ??
+          replyLocalizations["en-US"]["data.search"],
       });
 
       // Initialize categoryCounts object
@@ -80,43 +82,74 @@ module.exports = {
 
           // Build embed
           const overallEmbed = new EmbedBuilder()
-            .setTitle(`SyrCityLine Request Stats Overall`)
+            .setTitle(
+              overalllocalizations[interaction.locale]["embedtitle"] ??
+                overalllocalizations["en-US"]["embedtitle"]
+            )
             .setAuthor({
               name: `${interaction.member.user.tag} | ${interaction.member.user.id}`,
               iconURL: `${interaction.user.displayAvatarURL()}`,
             })
-            .setDescription(`The current request numbers overall.`)
+            .setDescription(
+              overalllocalizations[interaction.locale]["embeddescription"] ??
+                overalllocalizations["en-US"]["embeddescription"]
+            )
             .setThumbnail("attachment://logo.png")
             .setColor("Orange")
             .addFields(
               {
-                name: "> Number of Requests:",
+                name:
+                  overalllocalizations[interaction.locale][
+                    "embednumberofrequests"
+                  ] ?? overalllocalizations["en-US"]["embednumberofrequests"],
                 value: `↳ ${csvData.length}`,
                 inline: true,
               },
               {
-                name: "> Most Reported Category:",
+                name:
+                  overalllocalizations[interaction.locale][
+                    "embedmostreported"
+                  ] ?? overalllocalizations["en-US"]["embedmostreported"],
                 value: `↳ ${sortedCategories[0]} (${
                   categoryCounts[sortedCategories[0]]
-                } requests)`,
+                } ${
+                  overalllocalizations[interaction.locale]["embedrequets"] ??
+                  overalllocalizations["en-US"]["embedrequets"]
+                })`,
               },
               {
-                name: "> Least Reported Category:",
+                name:
+                  overalllocalizations[interaction.locale][
+                    "embedleastreported"
+                  ] ?? overalllocalizations["en-US"]["embedleastreported"],
                 value: `↳ ${sortedCategories[sortedCategories.length - 1]} (${
                   categoryCounts[sortedCategories[sortedCategories.length - 1]]
-                } requests)`,
+                } ${
+                  overalllocalizations[interaction.locale]["embedrequets"] ??
+                  overalllocalizations["en-US"]["embedrequets"]
+                })`,
               },
               {
-                name: "> Top Three Categories:",
+                name:
+                  overalllocalizations[interaction.locale]["embedtopthree"] ??
+                  overalllocalizations["en-US"]["embedtopthree"],
                 value: topCategories
                   .map(
                     (category) =>
-                      `↳ ${category} (${categoryCounts[category]} requests)`
+                      `↳ ${category} (${categoryCounts[category]} ${
+                        overalllocalizations[interaction.locale][
+                          "embedrequets"
+                        ] ?? overalllocalizations["en-US"]["embedrequets"]
+                      })`
                   )
                   .join("\n"),
               }
             )
-            .setFooter({ text: `${getDatabaseUpdatedTime()}` });
+            .setFooter({
+              text:
+                databaselocalizations[interaction.locale].databaseupdated ??
+                databaselocalizations["en-US"].databaseupdated,
+            });
 
           // Edit reply
           interaction.editReply({
@@ -129,7 +162,9 @@ module.exports = {
       console.error(error);
       // Handle error
       interaction.editReply({
-        content: reply["data.error"],
+        content:
+          replyLocalizations[interaction.locale]["data.error"] ??
+          replyLocalizations["en-US"]["data.error"],
       });
     }
   },

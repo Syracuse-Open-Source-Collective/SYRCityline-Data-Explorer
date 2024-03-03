@@ -1,28 +1,76 @@
 // Locales for the stats overall command
 const locales = {
   "en-US": {
-    // english
+    embedtitle: "SyrCityLine Request Stats Overall",
+    embeddescription: "The current request numbers overall.",
+    embednumberofrequests: "> Number of Requests",
+    embedmostreported: "> Most Reported Category",
+    embedrequets: "requests",
+    embedleastreported: "> Least Reported Category",
+    embedtopthree: "> Top Three Categories",
   },
   "es-ES": {
-    // spanish
+    embedtitle: "Estadísticas generales de solicitudes de SyrCityLine",
+    embeddescription: "El recuento actual de solicitudes en general.",
+    embednumberofrequests: "> Número de Solicitudes",
+    embedmostreported: "> Categoría más reportada",
+    embedrequets: "solicitudes",
+    embedleastreported: "> Categoría menos reportada",
+    embedtopthree: "> Tres categorías principales",
   },
   "zh-CN": {
-    // chinese
+    embedtitle: "SyrCityLine请求统计总览",
+    embeddescription: "当前的请求总数。",
+    embednumberofrequests: "> 请求数量",
+    embedmostreported: "> 最多报告的类别",
+    embedrequets: "请求",
+    embedleastreported: "> 最少报告的类别",
+    embedtopthree: "> 前三个类别",
   },
   fr: {
-    // french
+    embedtitle: "Statistiques générales des demandes SyrCityLine",
+    embeddescription: "Le nombre actuel de demandes dans l'ensemble.",
+    embednumberofrequests: "> Nombre de demandes",
+    embedmostreported: "> Catégorie la plus signalée",
+    embedrequets: "demandes",
+    embedleastreported: "> Catégorie la moins signalée",
+    embedtopthree: "> Trois premières catégories",
   },
   uk: {
-    // ukrainian
+    embedtitle: "Загальна статистика запитів SyrCityLine",
+    embeddescription: "Поточна кількість запитів в цілому.",
+    embednumberofrequests: "> Кількість запитів",
+    embedmostreported: "> Найбільш звільнена категорія",
+    embedrequets: "запити",
+    embedleastreported: "> Найменш звільнена категорія",
+    embedtopthree: "> Три найпопулярніші категорії",
   },
   it: {
-    // italian
+    embedtitle: "Statistiche generali delle richieste di SyrCityLine",
+    embeddescription: "Il numero attuale di richieste in generale.",
+    embednumberofrequests: "> Numero di Richieste",
+    embedmostreported: "> Categoria più segnalata",
+    embedrequets: "richieste",
+    embedleastreported: "> Categoria meno segnalata",
+    embedtopthree: "> Top tre categorie",
   },
   vi: {
-    // vietnamese
+    embedtitle: "Tổng quan thống kê yêu cầu SyrCityLine",
+    embeddescription: "Số lượng yêu cầu hiện tại tổng cộng.",
+    embednumberofrequests: "> Số lượng Yêu cầu",
+    embedmostreported: "> Loại yêu cầu nhiều nhất",
+    embedrequets: "yêu cầu",
+    embedleastreported: "> Loại yêu cầu ít nhất",
+    embedtopthree: "> Ba loại yêu cầu hàng đầu",
   },
   de: {
-    // german
+    embedtitle: "SyrCityLine-Anforderungsstatistik insgesamt",
+    embeddescription: "Die aktuellen Anforderungszahlen insgesamt.",
+    embednumberofrequests: "> Anzahl der Anfragen",
+    embedmostreported: "> Am häufigsten gemeldete Kategorie",
+    embedrequets: "Anfragen",
+    embedleastreported: "> Am wenig sten gemeldete Kategorie",
+    embedtopthree: "> Top drei Kategorien",
   },
 };
 

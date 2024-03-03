@@ -21,10 +21,9 @@ const csvFilePath = path.join(
   "data",
   "database.csv"
 );
-const {
-  getDatabaseUpdatedTime,
-} = require("../../../functions/getDatabaseUpdatedTime");
 const replyLocalizations = require("../../../localization/replies-localizations");
+const monthLocalizations = require("../../../localization/stats-localizations/month-localization");
+const databaselocalizations = require("../../../localization/database-time-localization");
 
 /**
  * Expose subCommand
@@ -106,46 +105,76 @@ module.exports = {
           // Build embed
           const monthembed = new EmbedBuilder()
             .setTitle(
-              `SyrCityLine Request Stats For ${realcurrentMonth}/${currentYear}`
+              monthLocalizations[interaction.locale].embedtitle(
+                realcurrentMonth,
+                currentYear
+              ) ??
+                monthLocalizations["en-US"].embedtitle(
+                  realcurrentMonth,
+                  currentYear
+                )
             )
             .setAuthor({
               name: `${interaction.member.user.tag} | ${interaction.member.user.id}`,
               iconURL: `${interaction.user.displayAvatarURL()}`,
             })
             .setDescription(
-              `The current request numbers for the current month.`
+              monthLocalizations[interaction.locale].embeddescription ??
+                monthLocalizations["en-US"].embeddescription
             )
             .setThumbnail("attachment://logo.png")
             .setColor("Orange")
             .addFields(
               {
-                name: "> Number of Requests:",
+                name:
+                  monthLocalizations[interaction.locale]
+                    .embednumberofrequests ??
+                  monthLocalizations["en-US"].embednumberofrequests,
                 value: `↳ ${count}`,
                 inline: true,
               },
               {
-                name: "> Most Reported Category:",
+                name:
+                  monthLocalizations[interaction.locale].embedmostreported ??
+                  monthLocalizations["en-US"].embedmostreported,
                 value: `↳ ${sortedCategories[0]} (${
                   categoryCounts[sortedCategories[0]]
-                } requests)`,
+                } ${
+                  monthLocalizations[interaction.locale].embedrequests ??
+                  monthLocalizations["en-US"].embedrequests
+                })`,
               },
               {
-                name: "> Least Reported Category:",
+                name:
+                  monthLocalizations[interaction.locale].embedleastreported ??
+                  monthLocalizations["en-US"].embedleastreported,
                 value: `↳ ${sortedCategories[sortedCategories.length - 1]} (${
                   categoryCounts[sortedCategories[sortedCategories.length - 1]]
-                } requests)`,
+                } ${
+                  monthLocalizations[interaction.locale].embedrequests ??
+                  monthLocalizations["en-US"].embedrequests
+                })`,
               },
               {
-                name: "> Top Three Categories:",
+                name:
+                  monthLocalizations[interaction.locale].embedtopthree ??
+                  monthLocalizations["en-US"].embedtopthree,
                 value: topCategories
                   .map(
                     (category) =>
-                      `↳ ${category} (${categoryCounts[category]} requests)`
+                      `↳ ${category} (${categoryCounts[category]} ${
+                        monthLocalizations[interaction.locale].embedrequests ??
+                        monthLocalizations["en-US"].embedrequests
+                      })`
                   )
                   .join("\n"),
               }
             )
-            .setFooter({ text: `${getDatabaseUpdatedTime()}` });
+            .setFooter({
+              text:
+                databaselocalizations[interaction.locale].databaseupdated ??
+                databaselocalizations["en-US"].databaseupdated,
+            });
 
           interaction.editReply({
             embeds: [monthembed],
@@ -155,6 +184,7 @@ module.exports = {
         });
     } catch (error) {
       console.error(error);
+      // Handle error
       interaction.editReply({
         content:
           replyLocalizations[interaction.locale]["data.error"] ??
