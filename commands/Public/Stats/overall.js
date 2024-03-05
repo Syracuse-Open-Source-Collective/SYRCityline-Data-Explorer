@@ -22,14 +22,14 @@ const csvFilePath = path.join(
   "database.csv"
 );
 const replyLocalizations = require("../../../localization/replies-localizations");
-const yearlocalizations = require("../../../localization/stats-localizations/year-localization");
+const overalllocalizations = require("../../../localization/stats-localizations/overall-localization");
 const databaselocalizations = require("../../../localization/database-time-localization");
 
 /**
  * Expose subCommand
  */
 module.exports = {
-  subCommand: "stats.year",
+  subCommand: "stats.overall",
 
   /**
    * Execute function
@@ -59,31 +59,8 @@ module.exports = {
         .pipe(parse({ delimiter: ",", from_line: 2 }))
         .on("data", (data) => csvData.push(data))
         .on("end", () => {
-          // Get current year
-          const currentDate = new Date();
-          const currentYear = currentDate.getFullYear();
-
-          // Filter records for the current year
-          const currentYearRecords = csvData.filter((record) => {
-            const createdAt = record.Created_at_local;
-            const year = createdAt.match(/\d{2}\/\d{2}\/(\d{4})/)[1];
-            return year === currentYear.toString();
-          });
-
-          // Get count of records for the current year
-          let count = currentYearRecords.length;
-
-          // If no records found, inform user, and exit.
-          if (count === 0) {
-            interaction.editReply(
-              replyLocalizations[interaction.locale]["data.notFound.year"] ??
-                replyLocalizations["en-US"]["data.notFound.year"]
-            );
-            return;
-          }
-
-          // Count category occurrences
-          currentYearRecords.forEach((record) => {
+          // Process data
+          csvData.forEach((record) => {
             const category = record.Category;
             if (categoryCounts[category]) {
               categoryCounts[category]++;
@@ -104,61 +81,65 @@ module.exports = {
           const attachment = new AttachmentBuilder("assets/logo.png");
 
           // Build embed
-          const yearEmbed = new EmbedBuilder()
+          const overallEmbed = new EmbedBuilder()
             .setTitle(
-              yearlocalizations[interaction.locale].embedtitle(currentYear) ??
-                yearlocatlizations["en-US"].embedtitle(currentYear)
+              overalllocalizations[interaction.locale]["embedtitle"] ??
+                overalllocalizations["en-US"]["embedtitle"]
             )
             .setAuthor({
               name: `${interaction.member.user.tag} | ${interaction.member.user.id}`,
               iconURL: `${interaction.user.displayAvatarURL()}`,
             })
             .setDescription(
-              yearlocalizations[interaction.locale].embeddescription ??
-                yearlocalizations["en-US"].embeddescription
+              overalllocalizations[interaction.locale]["embeddescription"] ??
+                overalllocalizations["en-US"]["embeddescription"]
             )
             .setThumbnail("attachment://logo.png")
             .setColor("Orange")
             .addFields(
               {
                 name:
-                  yearlocalizations[interaction.locale].embednumberofrequests ??
-                  yearlocalizations["en-US"].embednumberofrequests,
-                value: `↳ ${count}`,
+                  overalllocalizations[interaction.locale][
+                    "embednumberofrequests"
+                  ] ?? overalllocalizations["en-US"]["embednumberofrequests"],
+                value: `↳ ${csvData.length}`,
                 inline: true,
               },
               {
                 name:
-                  yearlocalizations[interaction.locale].embedmostreported ??
-                  yearlocalizations["en-US"].embedmostreported,
+                  overalllocalizations[interaction.locale][
+                    "embedmostreported"
+                  ] ?? overalllocalizations["en-US"]["embedmostreported"],
                 value: `↳ ${sortedCategories[0]} (${
                   categoryCounts[sortedCategories[0]]
                 } ${
-                  yearlocalizations[interaction.locale].embedrequests ??
-                  yearlocalizations["en-US"].embedrequests
+                  overalllocalizations[interaction.locale]["embedrequets"] ??
+                  overalllocalizations["en-US"]["embedrequets"]
                 })`,
               },
               {
                 name:
-                  yearlocalizations[interaction.locale].embedleastreported ??
-                  yearlocalizations["en-US"].embedleastreported,
+                  overalllocalizations[interaction.locale][
+                    "embedleastreported"
+                  ] ?? overalllocalizations["en-US"]["embedleastreported"],
                 value: `↳ ${sortedCategories[sortedCategories.length - 1]} (${
                   categoryCounts[sortedCategories[sortedCategories.length - 1]]
                 } ${
-                  yearlocalizations[interaction.locale].embedrequests ??
-                  yearlocalizations["en-US"].embedrequests
+                  overalllocalizations[interaction.locale]["embedrequets"] ??
+                  overalllocalizations["en-US"]["embedrequets"]
                 })`,
               },
               {
                 name:
-                  yearlocalizations[interaction.locale].embedtopthree ??
-                  yearlocalizations["en-US"].embedtopthree,
+                  overalllocalizations[interaction.locale]["embedtopthree"] ??
+                  overalllocalizations["en-US"]["embedtopthree"],
                 value: topCategories
                   .map(
                     (category) =>
                       `↳ ${category} (${categoryCounts[category]} ${
-                        yearlocalizations[interaction.locale].embedrequests ??
-                        yearlocalizations["en-US"].embedrequests
+                        overalllocalizations[interaction.locale][
+                          "embedrequets"
+                        ] ?? overalllocalizations["en-US"]["embedrequets"]
                       })`
                   )
                   .join("\n"),
@@ -172,7 +153,7 @@ module.exports = {
 
           // Edit reply
           interaction.editReply({
-            embeds: [yearEmbed],
+            embeds: [overallEmbed],
             content: " ",
             files: [attachment],
           });

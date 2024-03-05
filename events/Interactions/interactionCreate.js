@@ -1,9 +1,6 @@
-const {
-  ChatInputCommandInteraction,
-  Collection,
-  PermissionFlagsBits,
-} = require("discord.js");
+const { ChatInputCommandInteraction, Collection } = require("discord.js");
 require("dotenv").config();
+
 module.exports = {
   name: "interactionCreate",
   /**
@@ -41,29 +38,32 @@ module.exports = {
     }
 
     const { cooldowns } = client;
-    if (!cooldowns.has(command.name)) {
-      cooldowns.set(command.name, new Collection());
-    }
 
-    const now = Date.now();
-    const timestamps = cooldowns.get(command.name);
     const cooldownAmount = 5 * 1000;
+
+    const timestamps = cooldowns.get(command.name) || new Collection();
 
     if (timestamps.has(interaction.user.id)) {
       const expirationTime =
         timestamps.get(interaction.user.id) + cooldownAmount;
 
-      if (now < expirationTime) {
-        const expiredTimestamp = Math.round(expirationTime / 1000);
+      const remainingCooldown = (expirationTime - Date.now()) / 1000;
+
+      if (Date.now() < expirationTime) {
         return interaction.reply({
-          content: `Hey there! It looks like you've hit the usage limit for the /${command.data.name} command. Don't worry, you'll be able to use it again in <t:${expiredTimestamp}:R>. Thanks for using the bot!`,
+          content: `Hey there! It looks like you've hit the usage limit for the /${
+            command.data.name
+          } command. Don't worry, you'll be able to use it again in ${remainingCooldown.toFixed(
+            1
+          )} seconds. Thanks for using the bot!`,
           ephemeral: true,
         });
       }
     }
 
-    timestamps.set(interaction.user.id, now);
+    timestamps.set(interaction.user.id, Date.now());
     setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount);
+    cooldowns.set(command.name, timestamps);
 
     try {
       const subCommand = interaction.options.getSubcommand(false);
@@ -80,6 +80,7 @@ module.exports = {
         subCommandFile.execute(interaction, client);
       } else command.execute(interaction, client);
     } catch (error) {
+      console.error(error);
       interaction.reply({
         content:
           "We apologize for this error and assure you that we are working on resolving it promptly.",
