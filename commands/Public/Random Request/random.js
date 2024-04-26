@@ -148,7 +148,7 @@ module.exports = {
                   it: "Animali investiti",
                   de: "RoadKill",
                 },
-                value: "RoadKill",
+                value: "Roadkill",
               },
               {
                 name: "Construction Debris",

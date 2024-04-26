@@ -84,6 +84,7 @@ module.exports = {
             const recordYear = parseInt(
               createdAt.match(/\d{2}\/\d{2}\/(\d{4})/)[1]
             );
+
             return (
               recordYear === parseInt(year) && record.Category === category
             );
@@ -102,6 +103,7 @@ module.exports = {
           wantedRecords.forEach((record) => {
             const createdAt = record.Created_at_local;
             const month = createdAt.match(/(\d{2})\/\d{2}\/\d{4}/)[1];
+
             const monthName = monthMap[month];
             if (monthName) {
               if (monthCounts[monthName]) {

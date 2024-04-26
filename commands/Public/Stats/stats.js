@@ -133,7 +133,7 @@ module.exports = {
                   it: "gennaio",
                   de: "Januar",
                 },
-                value: "0",
+                value: "1",
               },
               {
                 name: "February",
@@ -145,7 +145,7 @@ module.exports = {
                   it: "febbraio",
                   de: "Februar",
                 },
-                value: "1",
+                value: "2",
               },
               {
                 name: "March",
@@ -157,7 +157,7 @@ module.exports = {
                   it: "marzo",
                   de: "März",
                 },
-                value: "2",
+                value: "3",
               },
               {
                 name: "April",
@@ -169,7 +169,7 @@ module.exports = {
                   it: "aprile",
                   de: "April",
                 },
-                value: "3",
+                value: "4",
               },
               {
                 name: "May",
@@ -181,7 +181,7 @@ module.exports = {
                   it: "maggio",
                   de: "Mai",
                 },
-                value: "4",
+                value: "5",
               },
               {
                 name: "June",
@@ -193,7 +193,7 @@ module.exports = {
                   it: "giugno",
                   de: "Juni",
                 },
-                value: "5",
+                value: "6",
               },
               {
                 name: "July",
@@ -205,7 +205,7 @@ module.exports = {
                   it: "luglio",
                   de: "Juli",
                 },
-                value: "6",
+                value: "7",
               },
               {
                 name: "August",
@@ -217,7 +217,7 @@ module.exports = {
                   it: "agosto",
                   de: "August",
                 },
-                value: "7",
+                value: "8",
               },
               {
                 name: "September",
@@ -229,7 +229,7 @@ module.exports = {
                   it: "settembre",
                   de: "September",
                 },
-                value: "8",
+                value: "9",
               },
               {
                 name: "October",
@@ -241,7 +241,7 @@ module.exports = {
                   it: "ottobre",
                   de: "Oktober",
                 },
-                value: "9",
+                value: "10",
               },
               {
                 name: "November",
@@ -253,7 +253,7 @@ module.exports = {
                   it: "novembre",
                   de: "November",
                 },
-                value: "10",
+                value: "11",
               },
               {
                 name: "December",
@@ -265,7 +265,7 @@ module.exports = {
                   it: "dicembre",
                   de: "Dezember",
                 },
-                value: "11",
+                value: "12",
               }
             )
             .setRequired(true)

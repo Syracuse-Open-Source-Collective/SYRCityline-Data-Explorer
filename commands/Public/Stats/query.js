@@ -64,15 +64,16 @@ module.exports = {
         .on("data", (data) => csvData.push(data))
         .on("end", () => {
           // Get wanted date
-          const wantedDate = new Date(year, month);
+          const wantedDate = new Date(year, month, 0);
           const wantedYear = wantedDate.getFullYear();
-          const wantedMonth = wantedDate.getMonth() + 1;
+          const wantedMonth = wantedDate.getMonth();
 
           // Filter records for the current year and month
           const wantedRecords = csvData.filter((record) => {
             const createdAt = record.Created_at_local;
             const year = parseInt(createdAt.match(/\d{2}\/\d{2}\/(\d{4})/)[1]);
             const month = parseInt(createdAt.match(/(\d{2})\/\d{2}\/\d{4}/)[1]);
+
             return year === wantedYear && month === wantedMonth;
           });
 

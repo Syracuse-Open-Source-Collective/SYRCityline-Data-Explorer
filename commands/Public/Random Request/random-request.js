@@ -321,9 +321,7 @@ module.exports = {
           });
         });
     } catch (error) {
-      console.error(error);
-      // Handle error
-      // Handle error
+      console.log(error);
       interaction.editReply({
         content:
           replyLocalizations[interaction.locale]["data.error"] ??
