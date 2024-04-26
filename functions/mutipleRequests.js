@@ -7,6 +7,10 @@ const {
   EmbedBuilder,
 } = require("discord.js");
 
+const {
+  getDatabaseUpdatedTime,
+} = require("../functions/getDatabaseUpdatedTime");
+
 async function mutipleRequests(interaction, requests) {
   let currentPage = 0;
   const totalPages = requests.length;
@@ -17,7 +21,7 @@ async function mutipleRequests(interaction, requests) {
     new EmbedBuilder()
       .setTitle(`SyrCityLine ${requests[currentPage].category} Request`)
       .setAuthor({
-        name: `${interaction.member.user.tag} | Request Followers - ${requests[currentPage].followers}`,
+        name: `${interaction.member.user.tag} | Current Request - ${currentPage} / ${requests.length}`,
         iconURL: `${interaction.user.displayAvatarURL()}`,
       })
       .setDescription(
@@ -31,55 +35,53 @@ async function mutipleRequests(interaction, requests) {
       .addFields(
         {
           name: "> Summary:",
-          value: `${requests[currentPage].summary || "No Summary provided"}`,
+          value: `↳ ${requests[currentPage].summary || "No Summary provided"}`,
           inline: true,
         },
         {
           name: "> Address:",
-          value: `${requests[currentPage].address || "No Address provided"}`,
+          value: `↳ ${requests[currentPage].address || "No Address provided"}`,
           inline: true,
         },
         {
           name: "> Source:",
-          value: `${requests[currentPage].source || "No Source Provided"}`,
+          value: `↳ ${requests[currentPage].source || "No Source Provided"}`,
         },
         {
           name: "> Agency:",
-          value: `${requests[currentPage].agency || "No Agency assigned"}`,
+          value: `↳ ${requests[currentPage].agency || "No Agency assigned"}`,
         },
         {
           name: "> Assignee:",
-          value: `${requests[currentPage].assignee || "No Assignee"}`,
+          value: `↳ ${requests[currentPage].assignee || "No Assignee"}`,
         },
         {
           name: "> Latitude:",
-          value: `${requests[currentPage].latitude || "N/A"}`,
+          value: `↳ ${requests[currentPage].latitude || "N/A"}`,
           inline: true,
         },
         {
           name: "> Longitude :",
-          value: `${requests[currentPage].longitude || "N/A"}`,
+          value: `↳ ${requests[currentPage].longitude || "N/A"}`,
           inline: true,
         },
         {
           name: "> Acknowledged At:",
-          value: `${requests[currentPage].acknowledgedat || "N/A"}`,
+          value: `↳ ${requests[currentPage].acknowledgedat || "N/A"}`,
           inline: false,
         },
         {
           name: "> Created At:",
-          value: `${requests[currentPage].createdat}`,
+          value: `↳ ${requests[currentPage].createdat}`,
           inline: true,
         },
         {
           name: "> Closed At:",
-          value: `${requests[currentPage].closedat || "Not closed yet"}`,
+          value: `↳ ${requests[currentPage].closedat || "Not closed yet"}`,
           inline: true,
         }
       )
-      .setFooter({
-        text: `Request ID - ${requests[currentPage].id} | I would like to clarify that the Syracuse Data Challenge logo is the rightful property of its owner and is not affiliated with me or my bot.`,
-      });
+      .setFooter({ text: `${getDatabaseUpdatedTime()}` });
 
   const backButton = new ButtonBuilder()
     .setLabel("⫷")
@@ -99,7 +101,7 @@ async function mutipleRequests(interaction, requests) {
   const requestEmbed = createRequestEmbed(currentPage);
 
   const message = await interaction.editReply({
-    content: "",
+    content: `Below are the requests!`,
     embeds: [requestEmbed],
     files: [attachment],
     components: [buttons],

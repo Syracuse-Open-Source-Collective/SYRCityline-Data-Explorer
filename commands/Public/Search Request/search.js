@@ -5,7 +5,7 @@ module.exports = {
     .setName("search")
     .setDMPermission(false)
     .setDescription(
-      "Retrieve SYRCityline Requests data for a specific address or ID!"
+      "Retrieve SYRCityline Requests data for a specific address or ID or latitude and longitude!"
     )
     .addSubcommand((options) =>
       options
@@ -27,9 +27,26 @@ module.exports = {
         .addStringOption((options) =>
           options
             .setName("id")
-            .setDescription(
-              "Please provide the ID of the SYRCityline request in this format: 12737412."
-            )
+            .setDescription("Please provide the ID of the SYRCityline request.")
+            .setRequired(true)
+        )
+    )
+    .addSubcommand((options) =>
+      options
+        .setName("lat-long")
+        .setDescription(
+          "Retrieve SYRCityline Requests for the given latitude and longitude."
+        )
+        .addStringOption((options) =>
+          options
+            .setName("latitude")
+            .setDescription("Please provide the latitude of the location.")
+            .setRequired(true)
+        )
+        .addStringOption((options) =>
+          options
+            .setName("longitude")
+            .setDescription("Please provide the longitude of the location.")
             .setRequired(true)
         )
     ),
